@@ -1,0 +1,2043 @@
+﻿<!DOCTYPE html>
+
+<html lang="id"><head>
+<meta charset="utf-8"/>
+<meta name="translate-nitro-links"/>
+<!-- Start VWO Async SmartCode -->
+<link href="https://dev.visualwebsiteoptimizer.com" rel="preconnect"/>
+<script class="optanon-category-C0002-C0003-C0004" id="vwoCode" type="text/plain">
+    window._vwo_code || (function() {
+    var account_id=472626,
+    version=2.1,
+    settings_tolerance=2000,
+    hide_element='body',
+    hide_element_style = 'opacity:0 !important;filter:alpha(opacity=0) !important;background:none !important;transition:none !important;',
+    /* DO NOT EDIT BELOW THIS LINE */
+    f=false,w=window,d=document,v=d.querySelector('#vwoCode'),cK='_vwo_'+account_id+'_settings',cc={};try{var c=JSON.parse(localStorage.getItem('_vwo_'+account_id+'_config'));cc=c&&typeof c==='object'?c:{}}catch(e){}var stT=cc.stT==='session'?w.sessionStorage:w.localStorage;code={nonce:v&&v.nonce,use_existing_jquery:function(){return typeof use_existing_jquery!=='undefined'?use_existing_jquery:undefined},library_tolerance:function(){return typeof library_tolerance!=='undefined'?library_tolerance:undefined},settings_tolerance:function(){return cc.sT||settings_tolerance},hide_element_style:function(){return'{'+(cc.hES||hide_element_style)+'}'},hide_element:function(){if(performance.getEntriesByName('first-contentful-paint')[0]){return''}return typeof cc.hE==='string'?cc.hE:hide_element},getVersion:function(){return version},finish:function(e){if(!f){f=true;var t=d.getElementById('_vis_opt_path_hides');if(t)t.parentNode.removeChild(t);if(e)(new Image).src='https://dev.visualwebsiteoptimizer.com/ee.gif?a='+account_id+e}},finished:function(){return f},addScript:function(e){var t=d.createElement('script');t.type='text/javascript';if(e.src){t.src=e.src}else{t.text=e.text}v&&t.setAttribute('nonce',v.nonce);d.getElementsByTagName('head')[0].appendChild(t)},load:function(e,t){var n=this.getSettings(),i=d.createElement('script'),r=this;t=t||{};if(n){i.textContent=n;d.getElementsByTagName('head')[0].appendChild(i);if(!w.VWO||VWO.caE){stT.removeItem(cK);r.load(e)}}else{var o=new XMLHttpRequest;o.open('GET',e,true);o.withCredentials=!t.dSC;o.responseType=t.responseType||'text';o.onload=function(){if(t.onloadCb){return t.onloadCb(o,e)}if(o.status===200||o.status===304){_vwo_code.addScript({text:o.responseText})}else{_vwo_code.finish('&e=loading_failure:'+e)}};o.onerror=function(){if(t.onerrorCb){return t.onerrorCb(e)}_vwo_code.finish('&e=loading_failure:'+e)};o.send()}},getSettings:function(){try{var e=stT.getItem(cK);if(!e){return}e=JSON.parse(e);if(Date.now()>e.e){stT.removeItem(cK);return}return e.s}catch(e){return}},init:function(){if(d.URL.indexOf('__vwo_disable__')>-1)return;var e=this.settings_tolerance();w._vwo_settings_timer=setTimeout(function(){_vwo_code.finish();stT.removeItem(cK)},e);var t;if(this.hide_element()!=='body'){t=d.createElement('style');var n=this.hide_element(),i=n?n+this.hide_element_style():'',r=d.getElementsByTagName('head')[0];t.setAttribute('id','_vis_opt_path_hides');v&&t.setAttribute('nonce',v.nonce);t.setAttribute('type','text/css');if(t.styleSheet)t.styleSheet.cssText=i;else t.appendChild(d.createTextNode(i));r.appendChild(t)}else{t=d.getElementsByTagName('head')[0];var i=d.createElement('div');i.style.cssText='z-index: 2147483647 !important;position: fixed !important;left: 0 !important;top: 0 !important;width: 100% !important;height: 100% !important;background: white !important;display: block !important;';i.setAttribute('id','_vis_opt_path_hides');i.classList.add('_vis_hide_layer');t.parentNode.insertBefore(i,t.nextSibling)}var o=window._vis_opt_url||d.URL,s='https://dev.visualwebsiteoptimizer.com/j.php?a='+account_id+'&u='+encodeURIComponent(o)+'&vn='+version;if(w.location.search.indexOf('_vwo_xhr')!==-1){this.addScript({src:s})}else{this.load(s+'&x=true')}}};w._vwo_code=code;code.init();})();
+    </script>
+<!-- End VWO Async SmartCode -->
+<script>
+      "use strict";
+      (function (c, d, r, o) {
+      "use strict";
+      const u = o.endpoint || "https://api.gonitro.com/v1/events",
+          g = o.headers || {};
+      let n = o.domain || "";
+      const s = "nitro-session-id",
+          i = "nitro-global-user-id";
+      console.log('INIT NITRO:');
+      function l() {
+          const e = sessionStorage.getItem(s);
+          if (e) return e;
+          const t = crypto.randomUUID();
+          return sessionStorage.setItem(s, t), t;
+      }
+      function m() {
+          const e = document.cookie.match(new RegExp("(^| )" + i + "=([^;]+)"));
+          let t = "";
+          return (
+          e ? (t = e[2]) : (t = crypto.randomUUID()),
+          n ||
+              (document.domain.includes("gonitro.com")
+              ? (n = ".gonitro.com")
+              : (n = ".gonitrodev.com")),
+          (document.cookie =
+              i + "=" + t + ";Max-Age=1704085200;domain=" + n + ";path=/"),
+          t
+          );
+      }
+      function p(e) {
+          const {
+          eventName: t,
+          eventContext: h,
+          requestID: I = "",
+          eventState: w = 0,
+          productName: y,
+          productVersion: N,
+          ...E
+          } = e;
+          return {
+          events: [
+              {
+              eventName: t,
+              eventContext: h,
+              eventState: w,
+              requestId: I,
+              sessionId: v,
+              detail: {
+                  "@type":
+                  "type.googleapis.com/nitro.protobuf.appevent.shared.BrowserEvent",
+                  globalUserId: a,
+                  page: {
+                  location: window.location.pathname,
+                  referer: document.referrer,
+                  },
+                  browser: {
+                  language: navigator.language,
+                  userAgent: navigator.userAgent,
+                  screen: { width: screen.width, height: screen.height },
+                  },
+                  extras: JSON.stringify(E),
+              },
+              },
+          ],
+          source: { product: y || c, productVersion: N || d },
+          };
+      }
+      function f(e) {
+          return fetch(u, {
+          keepalive: !0,
+          method: "POST",
+          headers: Object.assign(g, { "Content-Type": "application/json" }),
+          body: JSON.stringify(e),
+          });
+      }
+      const v = l(),
+          a = m();
+      (r.sendEvent = function (e) {
+          if (!(!e.eventName || !e.eventContext)) return f(p(e));
+      }),
+          (r.getGlobalUserID = function () {
+          return a;
+          });
+      })( 'nitro-main-website', '', (window.NitroAnalytics = window.NitroAnalytics || {}), {});
+
+      class NitroAnalyticsService {
+          static init() {
+              NitroAnalyticsService.addEventListenersToButtons();
+              NitroAnalyticsService.sendPageLoadEvent();
+              NitroAnalyticsService.appendParamsToCBUrls();
+          }
+
+          static retrieveUtmParams() {
+              const utmParams = {};
+              const allParams = new URLSearchParams(document.location.search);
+
+              for (const pair of allParams) {
+                  if (pair[0].startsWith('utm_')) {
+                      utmParams[pair[0]] = pair[1];
+                  }
+              }
+
+              return utmParams;
+          }
+
+          static handleClickEvent(e) {
+              if (!NitroAnalytics) {
+                  return;
+              }
+
+              e.preventDefault();
+
+              const eventName = this.getAttribute('data-analytics-event');
+              const eventContext = this.getAttribute('data-analytics-context');
+              const eventData = this.getAttribute('data-analytics-data');
+              const obj = NitroAnalyticsService.buildEventObject(eventName, eventContext, eventData);
+
+              NitroAnalytics.sendEvent(obj).finally(() => {
+                  const target = e.target.closest('a');
+                  document.location.href = target.href;
+              });
+          }
+
+          static buildEventObject(eventName, eventContext, eventData) {
+              const utmParams = NitroAnalyticsService.retrieveUtmParams();
+              const url = document.location.href;
+              const GA_id = 'G-1GWYE8ZM4X';
+              let eventJSON = {};
+
+              try {
+                  eventJSON = JSON.parse(eventData.replace('&quot;', '"'));
+              } catch {}
+
+              return {
+                  eventContext,
+                  eventName,
+                  eventState: 2,
+                  url,
+                  GA_id,
+                  ...eventJSON,
+                  ...utmParams
+              };
+          }
+
+          static addEventListenersToButtons() {
+              document.querySelectorAll('a[data-analytics-event][data-analytics-context]:not([na-listener="true"]').forEach((el) => {
+                  el.setAttribute('na-listener', 'true');
+                  el.addEventListener('click', NitroAnalyticsService.handleClickEvent);
+              }); 
+          }
+
+          static appendParamsToCBUrls() {
+              document.querySelectorAll('a[href*="store.gonitro.com"').forEach((el) => {
+                  const url = new URL(el.href);
+                  const extraParams = {
+                      'x-nitro-global-user-id': NitroAnalytics.getGlobalUserID(),
+                      'x-ga-id': 'G-1GWYE8ZM4X'
+                  }
+
+                  for (const [key, value] of Object.entries(extraParams)) {
+                      if (!url.searchParams.has(key)) {
+                          url.searchParams.append(key, value);
+                      }
+                  }
+
+                  el.href = url;
+              });
+          }
+
+          static sendPageLoadEvent() {
+              const eventName = document.body.getAttribute('data-analytics-event');
+              const eventContext = document.body.getAttribute('data-analytics-context');
+              const eventData = document.body.getAttribute('data-analytics-data');
+              const obj = NitroAnalyticsService.buildEventObject(eventName, eventContext, eventData);
+
+              if (eventName && eventContext) {
+                  NitroAnalytics.sendEvent(obj);
+              }
+          }
+      }
+
+      function nitroAnalyticsPageLoadEvent() {
+          NitroAnalyticsService.init();
+      }
+
+      // Check if DOMContentLoaded has already fired
+      if (document.readyState === 'loading') {
+          // The document is still loading, add the event listener
+          document.addEventListener('DOMContentLoaded', nitroAnalyticsPageLoadEvent);
+          console.log('DOMContentLoaded');
+      } else {
+          // The document has already loaded, call the function directly
+          nitroAnalyticsPageLoadEvent();
+          console.log('nitroAnalyticsPageLoadEvent');
+      }
+  </script>
+<link href="https://www.gonitro.com/hubfs/sitemap/sitemap-index.xml" rel="sitemap" title="Sitemap" type="application/xml"/>
+<title>Tentang PT Digital Asia Utama</title>
+<link href="https://www.gonitro.com/hubfs/_img/favicon.png" rel="shortcut icon"/>
+<meta content="PT Digital Asia Utama — reseller resmi Nitro PDF Pro di Indonesia. Lisensi original, harga kompetitif, dukungan Bahasa Indonesia." name="description"/>
+<meta content="https://www.gonitro.com/hubfs/Nitro_2025/social-sharing-fallback.jpg" property="og:image"/>
+<meta content="https://www.gonitro.com/hubfs/Nitro_2025/social-sharing-fallback.jpg" name="twitter:image"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="Nitro empowers people everywhere to work on what matters with our suite of user-focused and industry-leading PDF, eSign, and AI Solusi. " property="og:description"/>
+<meta content="Tentang PT Digital Asia Utama" property="og:title"/>
+<meta content="Nitro empowers people everywhere to work on what matters with our suite of user-focused and industry-leading PDF, eSign, and AI Solusi. " name="twitter:description"/>
+<meta content="Tentang Nitro" name="twitter:title"/>
+<style>
+a.cta_button{-moz-box-sizing:content-box !important;-webkit-box-sizing:content-box !important;box-sizing:content-box !important;vertical-align:middle}.hs-breadcrumb-menu{list-style-type:none;margin:0px 0px 0px 0px;padding:0px 0px 0px 0px}.hs-breadcrumb-menu-item{float:left;padding:10px 0px 10px 10px}.hs-breadcrumb-menu-divider:before{content:'›';padding-left:10px}.hs-featured-image-link{border:0}.hs-featured-image{float:right;margin:0 0 20px 20px;max-width:50%}@media (max-width: 568px){.hs-featured-image{float:none;margin:0;width:100%;max-width:100%}}.hs-screen-reader-text{clip:rect(1px, 1px, 1px, 1px);height:1px;overflow:hidden;position:absolute !important;width:1px}
+</style>
+<link href="assets/vendor/hubfs_hub_generated_module_assets_1_212365241454_1781193184738_module_product-focus-tracker.min.css" rel="stylesheet"/>
+<link href="assets/vendor/hubfs_hub_generated_template_assets_1_212522898021_1781794109331_template__in-editor-styles.min.css" rel="stylesheet"/>
+<link href="assets/vendor/hubfs_hub_generated_template_assets_1_179926198037_1781794113684_template_main.min.css" rel="stylesheet"/>
+<link href="assets/vendor/hubfs_hub_generated_module_assets_1_187665754115_1745509490432_module_form-modal.min.css" rel="stylesheet"/>
+<link as="style" class="hs-async-css" href="https://www.gonitro.com/hubfs/hub_generated/template_assets/1/179926198038/1781794112418/template_micromodal.min.css" onload="this.onload=null;this.rel='stylesheet'" rel="preload"/>
+<noscript><link href="assets/vendor/hubfs_hub_generated_template_assets_1_179926198038_1781794112418_template_micromodal.min.css" rel="stylesheet"/></noscript>
+<link href="assets/vendor/hubfs_hub_generated_module_assets_1_179926092448_1777474459594_module_mega-menu.min.css" rel="stylesheet"/>
+<link href="assets/vendor/hubfs_hub_generated_module_assets_1_180083839543_1761745091912_module_language-switcher.min.css" rel="stylesheet"/>
+<style>
+  #hs_cos_wrapper_language .hs-language-switcher { text-align:center; }
+
+#hs_cos_wrapper_language .hs-language-switcher__button {}
+
+#hs_cos_wrapper_language .hs-language-switcher__current-language {}
+
+#hs_cos_wrapper_language .hs-language-switcher__inner-wrapper {
+  margin-top:0px;
+  margin-bottom:0px;
+}
+
+#hs_cos_wrapper_language .hs-language-switcher__button:hover,
+#hs_cos_wrapper_language .hs-language-switcher.menu-open .hs-language-switcher__button {}
+
+#hs_cos_wrapper_language .hs-language-switcher__icon--custom {
+  width:22px;
+  max-width:40px;
+  height:auto;
+  margin-right:15px;
+}
+
+@media screen and (max-width:767px) {
+  #hs_cos_wrapper_language .hs-language-switcher__icon--custom { margin-right:0; }
+}
+
+#hs_cos_wrapper_language .hs-language-switcher__icon {
+  display:flex;
+  height:auto;
+  width:22px;
+  fill:rgba(0,0,0,1.0);
+  margin-right:15px;
+}
+
+#hs_cos_wrapper_language .hs-language-switcher__icon>svg {
+  width:22px;
+  height:auto;
+}
+
+#hs_cos_wrapper_language .hs-language-switcher__inner-wrapper:hover .hs-language-switcher__icon,
+#hs_cos_wrapper_language .hs-language-switcher.menu-open .hs-language-switcher__icon {}
+
+@media screen and (max-width:767px) {
+  #hs_cos_wrapper_language .hs-language-switcher__current-language { display:none; }
+
+  #hs_cos_wrapper_language .hs-language-switcher__icon {
+    display:flex;
+    margin-right:0;
+  }
+
+  #hs_cos_wrapper_language .hs-language-switcher__menu.hs--align-left {
+    left:0;
+    right:initial;
+    transform:translateX(0);
+  }
+
+  #hs_cos_wrapper_language .hs-language-switcher__menu.hs--align-right {
+    left:initial;
+    right:0;
+    transform:translateX(0);
+  }
+
+  #hs_cos_wrapper_language .hs-language-switcher__menu.hs--align-center {
+    left:50%;
+    right:initial;
+    transform:translateX(-50%);
+  }
+}
+
+#hs_cos_wrapper_language .hs-language-switcher__menu {
+  border:1px solid #000000;
+  left:0;
+}
+
+#hs_cos_wrapper_language .hs-language-switcher__item {}
+
+#hs_cos_wrapper_language .hs-language-switcher__item a { text-align:left; }
+
+#hs_cos_wrapper_language .hs-language-switcher__item:focus,
+#hs_cos_wrapper_language .hs-language-switcher__item.active,
+#hs_cos_wrapper_language .hs-language-switcher__menu.mousemove .hs-language-switcher__item:hover {}
+
+#hs_cos_wrapper_language .hs-language-switcher__item:focus a,
+#hs_cos_wrapper_language .hs-language-switcher__item.active a,
+#hs_cos_wrapper_language .hs-language-switcher__menu.mousemove .hs-language-switcher__item:hover a {}
+
+@media (max-width:450px) {
+  #hs_cos_wrapper_language .hs-language-switcher__menu {
+    width:280px;
+    max-width:280px;
+  }
+
+  #hs_cos_wrapper_language .hs-language-switcher__item a { white-space:normal; }
+}
+
+  </style>
+<link href="assets/vendor/hubfs_hub_generated_module_assets_1_181184499290_1757681744853_module_hero.min.css" rel="stylesheet"/>
+<style>
+  #hs_cos_wrapper_dnd_area-module-2 .angle-divider {
+  position:absolute;
+  z-index:-1;
+  top:100%;
+  left:0;
+  transform:translateY(-60%);
+  width:100%;
+}
+
+</style>
+<link href="assets/vendor/hubfs_hub_generated_module_assets_1_181347814721_1762278317003_module_content-media-1.min.css" rel="stylesheet"/>
+<link href="assets/vendor/hubfs_hub_generated_module_assets_1_181314425360_1743361749264_module_content-header.min.css" rel="stylesheet"/>
+<link href="assets/vendor/hubfs_hub_generated_module_assets_1_182117988611_1763050026814_module_cards.min.css" rel="stylesheet"/>
+<link href="assets/vendor/hubfs_hub_generated_module_assets_1_180940957580_1743361746209_module_logo-carousel.min.css" rel="stylesheet"/>
+<link href="assets/vendor/hubfs_hub_generated_module_assets_1_182117818788_1743361752309_module_testimonial.min.css" rel="stylesheet"/>
+<link href="assets/vendor/hubfs_hub_generated_module_assets_1_182818646072_1743361754998_module_stats-1.min.css" rel="stylesheet"/>
+<link href="assets/vendor/hubfs_hub_generated_module_assets_1_182839590257_1743361759266_module_locations-1.min.css" rel="stylesheet"/>
+<link href="assets/vendor/hubfs_hub_generated_module_assets_1_180943314071_1740888343474_module_icon-cards.min.css" rel="stylesheet"/>
+<link href="assets/vendor/hubfs_hub_generated_module_assets_1_183027611463_1743361760335_module_buttons-bar.min.css" rel="stylesheet"/>
+<style>
+  #hs_cos_wrapper_widget_1734095642323 .buttons-bar { justify-content:LEFT; }
+
+</style>
+<link href="assets/vendor/hubfs_hub_generated_module_assets_1_181447414179_1743361750318_module_bof-ctas.min.css" rel="stylesheet"/>
+<link href="assets/vendor/hubfs_hub_generated_module_assets_1_179931882809_1743361743917_module_social-links.min.css" rel="stylesheet"/>
+<link href="assets/vendor/hubfs_hub_generated_module_assets_1_181022216238_1741786408875_module_buttons.min.css" rel="stylesheet"/>
+<style>
+  #hs_cos_wrapper_footer_button .buttons {}
+
+</style>
+<link href="assets/vendor/hubfs_hub_generated_module_assets_1_179991233052_1747995439763_module_footer-menu.min.css" rel="stylesheet"/>
+<style>
+    
+    
+    
+      .footer__menu {
+        
+      }
+      .footer__logo {
+        
+      }
+      .footer__subscribe, .footer__social {
+        
+      }
+  </style>
+<!-- Editor Styles -->
+<style id="hs_editor_style" type="text/css">
+#hs_cos_wrapper_widget_1734516070153  { display: block !important; padding-top: 40px !important }
+#hs_cos_wrapper_widget_1734516161400  { display: block !important; padding-top: 20px !important }
+#hs_cos_wrapper_widget_1734095687300  { display: block !important; padding-top: 25px !important }
+#hs_cos_wrapper_module_1736860537731  { display: block !important; padding-top: 25px !important }
+#hs_cos_wrapper_widget_1734095483517  { border-color: #f7f5ff !important; border-radius: 20px !important; border-style: solid !important; display: block !important }
+#hs_cos_wrapper_widget_1734516070153  { display: block !important; padding-top: 40px !important }
+#hs_cos_wrapper_widget_1734516161400  { display: block !important; padding-top: 20px !important }
+#hs_cos_wrapper_widget_1734095483517  { border-color: #f7f5ff !important; border-radius: 20px !important; border-style: solid !important; display: block !important }
+#hs_cos_wrapper_widget_1734095687300  { display: block !important; padding-top: 25px !important }
+#hs_cos_wrapper_module_1736860537731  { display: block !important; padding-top: 25px !important }
+.dnd_area-row-0-force-full-width-section > .row-fluid {
+  max-width: none !important;
+}
+.dnd_area-row-1-force-full-width-section > .row-fluid {
+  max-width: none !important;
+}
+.dnd_area-row-4-force-full-width-section > .row-fluid {
+  max-width: none !important;
+}
+.dnd_area-row-10-force-full-width-section > .row-fluid {
+  max-width: none !important;
+}
+.widget_1734095483517-flexbox-positioning {
+  display: -ms-flexbox !important;
+  -ms-flex-direction: column !important;
+  -ms-flex-align: center !important;
+  -ms-flex-pack: start;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: flex-start;
+}
+.widget_1734095483517-flexbox-positioning > div {
+  max-width: 100%;
+  flex-shrink: 0 !important;
+}
+/* HubSpot Styles (default) */
+.dnd_area-row-0-padding {
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+}
+.dnd_area-row-1-padding {
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+}
+.dnd_area-row-2-padding {
+  padding-top: 70px !important;
+}
+.dnd_area-row-3-padding {
+  padding-top: 50px !important;
+  padding-bottom: 70px !important;
+}
+.dnd_area-row-4-padding {
+  padding-top: 50px !important;
+  padding-bottom: 50px !important;
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+}
+.dnd_area-row-4-background-layers {
+  background-image: linear-gradient(to bottom, rgba(247, 245, 255, 1), rgba(255, 255, 255, 1)) !important;
+  background-position: left top !important;
+  background-size: auto !important;
+  background-repeat: no-repeat !important;
+}
+.dnd_area-row-5-padding {
+  padding-top: 50px !important;
+  padding-bottom: 50px !important;
+}
+.dnd_area-row-6-padding {
+  padding-top: 100px !important;
+  padding-bottom: 100px !important;
+}
+.dnd_area-row-7-padding {
+  padding-bottom: 80px !important;
+}
+.dnd_area-row-7-background-layers {
+  background-image: linear-gradient(rgba(247, 245, 255, 1), rgba(247, 245, 255, 1)) !important;
+  background-position: left top !important;
+  background-size: auto !important;
+  background-repeat: no-repeat !important;
+}
+.dnd_area-row-9-background-layers {
+  background-image: linear-gradient(to bottom, rgba(247, 245, 255, 1), rgba(255, 255, 255, 1)) !important;
+  background-position: left top !important;
+  background-size: auto !important;
+  background-repeat: no-repeat !important;
+}
+.dnd_area-row-10-padding {
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+}
+.cell_1733840113690-row-0-margin {
+  margin-bottom: 30px !important;
+}
+.cell_17365311053062-row-1-margin {
+  margin-bottom: 20px !important;
+}
+.dnd_area-column-5-row-0-margin {
+  margin-bottom: 30px !important;
+}
+.dnd_area-column-17-row-0-margin {
+  margin-bottom: 50px !important;
+}
+.cell_17338410057643-padding {
+  padding-top: 130px !important;
+}
+</style>
+<script defer="" src="assets/vendor/hubfs_hub_generated_template_assets_1_185466713750_1781794107731_template_gclidLogic.min.js"></script>
+<script defer="" src="assets/vendor/hubfs_hub_generated_template_assets_1_185459393118_1781794114174_template_utmLogic.min.js"></script>
+<script defer="" src="assets/vendor/hubfs_hub_generated_template_assets_1_187669355038_1781794107085_template_formLogic.min.js"></script>
+<script defer="" src="assets/vendor/hubfs_hub_generated_template_assets_1_185514566423_1781794119279_template_dataLayerLogic.min.js"></script>
+<script defer="" src="assets/vendor/hubfs_hub_generated_template_assets_1_185467184036_1781794112645_template_nitroSignupTracking.min.js"></script>
+<script src="assets/vendor/hubfs_hub_generated_template_assets_1_179931882838_1781794115469_template_micromodal.min.js"></script>
+<link href="https://www.gonitro.com/about" rel="canonical"/>
+<style>
+  .kb-body-wrapper label.hs-search-field__label {
+    font-family: "DM Sans", sans-serif;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  .kb-body-wrapper .hs-search-field__bar>form>.hs-search-field__input {
+  border-radius: 8px;
+    margin-right: 8px;
+  }
+  .kb-body-wrapper button.hs-search-field__button {
+    border-radius: 8px;
+  }
+
+  .kb-body-wrapper ul li{
+    margin: 0;
+  }
+  .kb-body-wrapper li, .kb-body-wrapper ul, .kb-body-wrapper ol{
+    white-space: normal !important;
+  }
+
+</style>
+<meta content="https://www.gonitro.com/about" property="og:url"/>
+<meta content="summary" name="twitter:card"/>
+<meta content="en" http-equiv="content-language"/>
+<link href="https://www.gonitro.com/de/about" hreflang="de" rel="alternate"/>
+<link href="https://www.gonitro.com/about" hreflang="en" rel="alternate"/>
+<link href="https://www.gonitro.com/es/about" hreflang="es" rel="alternate"/>
+<link href="https://www.gonitro.com/fr/about" hreflang="fr" rel="alternate"/>
+<link href="https://www.gonitro.com/it/about" hreflang="it" rel="alternate"/>
+<link href="https://www.gonitro.com/nl/about" hreflang="nl" rel="alternate"/>
+<!-- OneTrust Cookies Consent Notice start for gonitro.com -->
+<script charset="UTF-8" data-domain-script="918d0ecd-e3b2-45fd-a5aa-5ebc3ffddd9b" src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" type="text/javascript"></script>
+<!-- OneTrust Cookies Consent Notice end for gonitro.com -->
+<!-- Google Tag Manager -->
+<!-- End Google Tag Manager -->
+<!-- Start Onetrust Allow/Disallow Hubspot Tracking -->
+<!-- End Onetrust Allow/Disallow Hubspot Tracking -->
+<!-- Start Onetrust Allow/Disallow Qualified Tracking -->
+<script type="text/javascript">
+    var isConsentQualifiedTrackingRunning = false;
+    var isRemoveQualifiedConsentRunning = false;
+
+    function consentQualifiedTracking() {
+      if (isConsentQualifiedTrackingRunning) return;
+      isConsentQualifiedTrackingRunning = true;
+
+      console.log('Qualified // enable tracking for user');
+      (function(w,q){w['QualifiedObject']=q;w[q]=w[q]||function(){
+      (w[q].q=w[q].q||[]).push(arguments)};})(window,'qualified');
+      var script = document.createElement('script');
+      script.src = "https://js.qualified.com/qualified.js?token=59TuFDNbZNYn3waE";
+      script.async = true;
+      document.head.appendChild(script);
+    }
+
+    function removeQualifiedConsent() {
+      if (isRemoveQualifiedConsentRunning) return;
+      isRemoveQualifiedConsentRunning = true;
+
+      console.log('Qualified DISABLE');
+      // Remove the Qualified script if it exists
+      var script = document.querySelector('script[src="https://js.qualified.com/qualified.js?token=59TuFDNbZNYn3waE"]');
+      if (script) {
+        script.remove();
+      }
+      var cookieName = '__q_state_' + '59TuFDNbZNYn3waE';
+      const cookiesToBeRemoved = [cookieName];
+      _removeCookies(cookiesToBeRemoved);
+
+      isRemoveQualifiedConsentRunning = false;
+      isConsentQualifiedTrackingRunning = false;
+    }
+
+    // Listen for the custom consentChanged event
+    addConsentChangeListener('C0003', consentQualifiedTracking, removeQualifiedConsent);
+  </script>
+<!-- End Onetrust Allow/Disallow Qualified Tracking -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link as="style" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&amp;family=DM+Serif+Display:ital@0;1&amp;family=IBM+Plex+Sans:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&amp;family=DM+Serif+Display:ital@0;1&amp;family=IBM+Plex+Sans:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" media="print" onload="this.media='all'" rel="stylesheet"/>
+<noscript>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&amp;family=DM+Serif+Display:ital@0;1&amp;family=IBM+Plex+Sans:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" rel="stylesheet"/>
+</noscript>
+<meta content="HubSpot" name="generator"/><style>
+.hermes-reseller-bar {
+  background: #1a2332; color: #fff; font-size: 14px;
+  padding: 8px 16px; text-align: center; z-index: 9999;
+}
+.hermes-reseller-bar a { color: #4ade80; font-weight: 600; margin-left: 12px; }
+/* Footer pakai px — EaseUS set html{font-size:40px} sehingga rem jadi raksasa */
+footer.hermes-reseller-footer {
+  background: #0f172a; color: #cbd5e1;
+  padding: 20px 20px 16px; margin-top: 24px;
+  font-size: 14px !important; line-height: 1.55 !important;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif !important;
+  box-sizing: border-box; width: 100%; clear: both;
+}
+footer.hermes-reseller-footer *,
+footer.hermes-reseller-footer *::before,
+footer.hermes-reseller-footer *::after {
+  box-sizing: border-box;
+  font-family: inherit !important;
+}
+footer.hermes-reseller-footer a {
+  color: #4ade80 !important; text-decoration: none !important;
+  font-size: 13px !important; line-height: 1.45 !important;
+}
+footer.hermes-reseller-footer a:hover { color: #86efac !important; }
+footer.hermes-reseller-footer .hrf-inner {
+  max-width: 1100px; margin: 0 auto; padding: 0 12px;
+}
+footer.hermes-reseller-footer .hrf-top {
+  display: flex; flex-wrap: wrap; align-items: center;
+  justify-content: space-between; gap: 8px 16px;
+  margin-bottom: 10px;
+}
+footer.hermes-reseller-footer .hrf-brand {
+  margin: 0; flex: 1 1 180px; min-width: 0;
+}
+footer.hermes-reseller-footer .hrf-brand-name {
+  display: block; color: #fff !important;
+  font-size: 15px !important; font-weight: 600 !important;
+  line-height: 1.35 !important; margin: 0 0 4px !important;
+}
+footer.hermes-reseller-footer .hrf-tagline {
+  color: #94a3b8 !important; font-size: 13px !important;
+  line-height: 1.45 !important; display: block;
+}
+footer.hermes-reseller-footer .hrf-nav {
+  display: flex; flex-wrap: wrap; gap: 4px 10px;
+  margin: 0; padding: 0; border: none;
+  flex: 2 1 280px; justify-content: flex-end;
+}
+footer.hermes-reseller-footer .hrf-nav a {
+  color: #e2e8f0 !important; font-size: 13px !important;
+  white-space: nowrap;
+}
+footer.hermes-reseller-footer .hrf-nav a:hover { color: #4ade80 !important; }
+footer.hermes-reseller-footer .hrf-meta {
+  display: grid;
+  grid-template-columns: minmax(200px, 34%) minmax(300px, 66%);
+  gap: 12px 48px;
+  padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.08);
+  align-items: start;
+}
+footer.hermes-reseller-footer .hrf-label {
+  display: block; color: #fff !important;
+  font-size: 12px !important; font-weight: 600 !important;
+  text-transform: uppercase; letter-spacing: 0.04em;
+  margin: 0 0 6px !important; line-height: 1.3 !important;
+}
+footer.hermes-reseller-footer .hrf-contact,
+footer.hermes-reseller-footer .hrf-address {
+  color: #94a3b8 !important; font-size: 13px !important;
+  line-height: 1.55 !important; margin: 0;
+  word-break: break-word; overflow-wrap: break-word;
+}
+footer.hermes-reseller-footer .hrf-address {
+  padding-left: 64px !important;
+  padding-right: 0 !important;
+  max-width: 100% !important;
+}
+footer.hermes-reseller-footer .hrf-copy {
+  text-align: center; margin: 12px 0 0;
+  font-size: 12px !important; color: #64748b !important;
+  line-height: 1.5 !important;
+}
+/* Widget WhatsApp floating */
+a.hermes-wa-fab {
+  position: fixed !important; right: 16px !important; bottom: 16px !important;
+  z-index: 9999 !important; width: 54px !important; height: 54px !important;
+  border-radius: 50% !important; background: #25d366 !important;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.28) !important;
+  display: flex !important; align-items: center !important; justify-content: center !important;
+  text-decoration: none !important; transition: transform 0.2s, box-shadow 0.2s !important;
+}
+a.hermes-wa-fab:hover {
+  transform: scale(1.06) !important;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.32) !important;
+}
+a.hermes-wa-fab svg {
+  width: 28px !important; height: 28px !important; fill: #fff !important;
+}
+@media (max-width: 768px) {
+  footer.hermes-reseller-footer { padding: 14px 12px 10px; }
+  footer.hermes-reseller-footer .hrf-inner {
+    max-width: 100% !important; padding: 0 4px !important;
+  }
+  footer.hermes-reseller-footer .hrf-top {
+    flex-direction: column; align-items: flex-start; gap: 10px;
+  }
+  footer.hermes-reseller-footer .hrf-brand {
+    flex: 1 1 100% !important; width: 100% !important;
+  }
+  footer.hermes-reseller-footer .hrf-nav {
+    justify-content: flex-start; gap: 6px 12px;
+    flex: 1 1 100% !important; width: 100% !important;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding-top: 10px !important;
+  }
+  footer.hermes-reseller-footer .hrf-meta {
+    grid-template-columns: 1fr; gap: 10px;
+    padding-top: 12px !important;
+  }
+  footer.hermes-reseller-footer .hrf-address {
+    padding-left: 0 !important;
+  }
+  footer.hermes-reseller-footer .hrf-copy {
+    margin-top: 12px !important; padding-top: 8px !important;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  a.hermes-wa-fab { right: 12px !important; bottom: 12px !important; width: 50px !important; height: 50px !important; }
+}
+body.hermes-mirror img { max-width: 100%; height: auto; }
+body.hermes-mirror { overflow-x: hidden; max-width: 100vw; }
+/* Layout responsif — semua mirror (desktop & mobile) */
+body.hermes-mirror *,
+body.hermes-mirror *::before,
+body.hermes-mirror *::after { box-sizing: border-box; }
+body.hermes-mirror img,
+body.hermes-mirror video,
+body.hermes-mirror picture,
+body.hermes-mirror svg { max-width: 100% !important; height: auto !important; }
+body.hermes-mirror table {
+  max-width: 100% !important; width: 100% !important;
+  display: block; overflow-x: auto; -webkit-overflow-scrolling: touch;
+}
+body.hermes-mirror iframe { max-width: 100% !important; }
+body.hermes-mirror [class*="container"],
+body.hermes-mirror [class*="Container"],
+body.hermes-mirror main,
+body.hermes-mirror section {
+  max-width: 100%;
+}
+@media (max-width: 1024px) {
+  body.hermes-mirror [class*="hero"],
+  body.hermes-mirror [class*="Hero"],
+  body.hermes-mirror [class*="banner"],
+  body.hermes-mirror [class*="Banner"] {
+    overflow-x: hidden !important;
+    max-width: 100vw !important;
+  }
+  body.hermes-mirror h1 {
+    font-size: clamp(22px, 5.5vw, 40px) !important;
+    line-height: 1.25 !important;
+    word-break: normal !important;
+    overflow-wrap: anywhere !important;
+  }
+}
+@media (max-width: 768px) {
+  body.hermes-mirror [class*="container"],
+  body.hermes-mirror [class*="Container"],
+  body.hermes-mirror [class*="wrapper"],
+  body.hermes-mirror [class*="Wrapper"] {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+  }
+  body.hermes-mirror [class*="container"]:not(.hs_cos_wrapper):not(.row-fluid-wrapper),
+  body.hermes-mirror [class*="Container"]:not(.hs_cos_wrapper):not(.row-fluid-wrapper),
+  body.hermes-mirror [class*="wrapper"]:not(.hs_cos_wrapper):not(.row-fluid-wrapper),
+  body.hermes-mirror [class*="Wrapper"]:not(.hs_cos_wrapper):not(.row-fluid-wrapper) {
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+  body.hermes-mirror header,
+  body.hermes-mirror nav,
+  body.hermes-mirror [role="banner"] {
+    max-width: 100vw !important;
+    overflow-x: hidden !important;
+  }
+}
+/* Gonitro / Nitro PDF */
+body.hermes-mirror.gonitro-mirror footer:not(.hermes-reseller-footer),
+body.hermes-mirror.gonitro-mirror [class*="site-footer"],
+body.hermes-mirror.gonitro-mirror [class*="global-footer"],
+body.hermes-mirror.gonitro-mirror [data-component="footer"] {
+  display: none !important;
+  height: 0 !important; overflow: hidden !important;
+}
+/* Gonitro — nav flat: hanya halaman lokal reseller */
+body.hermes-mirror.gonitro-mirror header.header.hermes-gonitro-header {
+  position: relative !important; z-index: 200 !important;
+}
+body.hermes-mirror.gonitro-mirror header.header.hermes-gonitro-header .header__inner {
+  display: flex !important; align-items: center !important;
+  justify-content: space-between !important; flex-wrap: nowrap !important;
+  gap: 12px !important; width: 100% !important;
+}
+body.hermes-mirror.gonitro-mirror header.header.hermes-gonitro-header .header__logo {
+  flex: 0 0 auto !important;
+}
+body.hermes-mirror.gonitro-mirror header.header.hermes-gonitro-header .header__navigation {
+  flex: 1 1 auto !important; display: flex !important;
+  align-items: center !important; justify-content: flex-end !important;
+  min-width: 0 !important;
+}
+body.hermes-mirror.gonitro-mirror .header__language {
+  display: none !important;
+}
+body.hermes-mirror.gonitro-mirror .hermes-gonitro-nav {
+  display: flex !important; align-items: center !important;
+  justify-content: flex-end !important; gap: 8px !important;
+  width: 100% !important; flex-wrap: nowrap !important;
+}
+body.hermes-mirror.gonitro-mirror .hermes-gonitro-nav-list {
+  display: flex !important; align-items: center !important;
+  gap: 4px !important; list-style: none !important;
+  margin: 0 !important; padding: 0 !important; flex-wrap: wrap !important;
+}
+body.hermes-mirror.gonitro-mirror .hermes-gonitro-nav-link {
+  display: inline-block !important; padding: 8px 12px !important;
+  font-size: 14px !important; font-weight: 500 !important;
+  color: #484a61 !important; text-decoration: none !important;
+  border-radius: 6px !important; white-space: nowrap !important;
+}
+body.hermes-mirror.gonitro-mirror .hermes-gonitro-nav-link:hover,
+body.hermes-mirror.gonitro-mirror .hermes-gonitro-nav-link.is-active {
+  color: #e60028 !important; background: rgba(230,0,40,0.06) !important;
+}
+body.hermes-mirror.gonitro-mirror .hermes-gonitro-nav-ctas {
+  display: flex !important; align-items: center !important;
+  gap: 6px !important; flex-shrink: 0 !important;
+}
+body.hermes-mirror.gonitro-mirror .hermes-gonitro-nav-ctas .button {
+  white-space: nowrap !important; font-size: 13px !important;
+  padding: 8px 14px !important;
+}
+body.hermes-mirror.gonitro-mirror .hermes-gonitro-nav-toggle {
+  display: none !important; flex-direction: column !important;
+  justify-content: center !important; gap: 5px !important;
+  width: 40px !important; height: 40px !important; padding: 8px !important;
+  border: 1px solid #d1d5db !important; border-radius: 8px !important;
+  background: #fff !important; cursor: pointer !important;
+}
+body.hermes-mirror.gonitro-mirror .hermes-gonitro-nav-toggle span {
+  display: block !important; height: 2px !important;
+  background: #484a61 !important; border-radius: 1px !important;
+}
+@media (max-width: 1024px) {
+  body.hermes-mirror.gonitro-mirror .hermes-gonitro-nav-toggle { display: flex !important; }
+  body.hermes-mirror.gonitro-mirror .hermes-gonitro-nav-list,
+  body.hermes-mirror.gonitro-mirror .hermes-gonitro-nav-ctas {
+    display: none !important;
+  }
+  body.hermes-mirror.gonitro-mirror .hermes-gonitro-nav.is-open .hermes-gonitro-nav-list,
+  body.hermes-mirror.gonitro-mirror .hermes-gonitro-nav.is-open .hermes-gonitro-nav-ctas {
+    display: flex !important;
+  }
+  body.hermes-mirror.gonitro-mirror .hermes-gonitro-nav.is-open {
+    position: absolute !important; top: 100% !important; left: 0 !important; right: 0 !important;
+    flex-direction: column !important; align-items: stretch !important;
+    background: #fff !important; border-bottom: 1px solid #e5e7eb !important;
+    padding: 12px 16px 16px !important; box-shadow: 0 8px 24px rgba(0,0,0,0.08) !important;
+    z-index: 300 !important;
+  }
+  body.hermes-mirror.gonitro-mirror .hermes-gonitro-nav.is-open .hermes-gonitro-nav-list {
+    flex-direction: column !important; align-items: stretch !important; width: 100% !important;
+  }
+  body.hermes-mirror.gonitro-mirror .hermes-gonitro-nav.is-open .hermes-gonitro-nav-link {
+    padding: 12px 8px !important;
+  }
+  body.hermes-mirror.gonitro-mirror .hermes-gonitro-nav.is-open .hermes-gonitro-nav-ctas {
+    flex-direction: column !important; width: 100% !important; margin-top: 8px !important;
+  }
+  body.hermes-mirror.gonitro-mirror .hermes-gonitro-nav.is-open .hermes-gonitro-nav-ctas .button {
+    width: 100% !important; text-align: center !important;
+  }
+}
+@media (max-width: 480px) {
+  body.hermes-mirror.gonitro-mirror .hermes-gonitro-nav-ctas .button { font-size: 12px !important; }
+}
+/* Gonitro — grid badge G2 (Pendapat pelanggan) */
+body.hermes-mirror.gonitro-mirror .hs-image__grid__container {
+  max-width: 1200px !important; margin: 0 auto !important;
+  padding: 8px 16px 24px !important; overflow: hidden !important;
+}
+body.hermes-mirror.gonitro-mirror .hs-image__grid__list {
+  display: flex !important; flex-wrap: wrap !important;
+  justify-content: center !important; align-items: center !important;
+  gap: 20px 28px !important; list-style: none !important;
+  margin: 0 !important; padding: 0 !important; width: 100% !important;
+}
+body.hermes-mirror.gonitro-mirror .hs-image__grid__list__item {
+  flex: 0 1 110px !important; max-width: 130px !important;
+  width: auto !important; margin: 0 !important; padding: 0 !important;
+  list-style: none !important;
+}
+body.hermes-mirror.gonitro-mirror .hs-image__grid__list__item__image {
+  width: 100% !important; max-width: 120px !important;
+  height: auto !important; display: block !important; object-fit: contain !important;
+}
+@media (max-width: 768px) {
+  body.hermes-mirror.gonitro-mirror .hs-image__grid__list__item {
+    flex: 0 1 calc(33.333% - 20px) !important; max-width: 100px !important;
+  }
+}
+@media (max-width: 480px) {
+  body.hermes-mirror.gonitro-mirror .hs-image__grid__list__item {
+    flex: 0 1 calc(50% - 16px) !important; max-width: 90px !important;
+  }
+}
+/* Gonitro — halaman harga: sembunyikan angka, tampilkan keterangan saja */
+body.hermes-mirror.gonitro-mirror .price_card-option-price,
+body.hermes-mirror.gonitro-mirror .price_card-option-annual-price,
+body.hermes-mirror.gonitro-mirror .skeleton-loading,
+body.hermes-mirror.gonitro-mirror .vat_includes,
+body.hermes-mirror.gonitro-mirror .price-card__card-toggle-text {
+  display: none !important; visibility: hidden !important;
+  height: 0 !important; overflow: hidden !important; margin: 0 !important; padding: 0 !important;
+}
+body.hermes-mirror.gonitro-mirror .price-card__card-option-terms {
+  display: block !important; font-size: 14px !important;
+  color: #484a61 !important; margin: 4px 0 8px !important;
+}
+body.hermes-mirror.gonitro-mirror .vat_excludes {
+  display: block !important; font-size: 13px !important;
+  color: #6b7280 !important; margin-top: 4px !important;
+}
+/* Gonitro — halaman Tentang & Kontak reseller */
+body.hermes-mirror.gonitro-mirror .gonitro-brand-page,
+body.hermes-mirror.gonitro-mirror.page-kontak .hermes-kontak-page {
+  max-width: 1200px !important; margin: 0 auto !important;
+  padding: 32px 20px 48px !important; box-sizing: border-box !important;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif !important;
+}
+body.hermes-mirror.gonitro-mirror .about-page-wrap {
+  width: 100% !important; max-width: 100% !important;
+  display: block !important; clear: both !important;
+  margin-bottom: 32px !important;
+}
+/* Tentang: hero full-width di atas, 3 kolom di bawah */
+body.hermes-mirror.gonitro-mirror .page-about.hermes-brand-about.gonitro-brand-page {
+  display: block !important;
+  grid-template-columns: none !important;
+  width: 100% !important; max-width: 1200px !important;
+  margin: 0 auto !important; padding: 32px 20px 48px !important;
+  box-sizing: border-box !important;
+  overflow: visible !important;
+}
+body.hermes-mirror.gonitro-mirror .gonitro-brand-page .about-hero,
+body.hermes-mirror.gonitro-mirror.page-kontak .kontak-hero {
+  width: 100% !important; max-width: 100% !important;
+  box-sizing: border-box !important;
+  text-align: center !important; margin-bottom: 32px !important;
+  padding: 28px 20px !important;
+  background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 100%) !important;
+  border-radius: 16px !important; border: 1px solid #e2e8f0 !important;
+}
+body.hermes-mirror.gonitro-mirror .gonitro-brand-page .about-badge,
+body.hermes-mirror.gonitro-mirror.page-kontak .kontak-badge {
+  display: inline-block !important; background: #e60028 !important;
+  color: #fff !important; font-size: 12px !important; font-weight: 600 !important;
+  padding: 5px 14px !important; border-radius: 999px !important;
+  margin-bottom: 14px !important; letter-spacing: 0.02em !important;
+}
+body.hermes-mirror.gonitro-mirror .gonitro-brand-page h1,
+body.hermes-mirror.gonitro-mirror.page-kontak .kontak-hero h1 {
+  font-size: clamp(26px, 4vw, 36px) !important; font-weight: 700 !important;
+  color: #0f172a !important; margin: 0 0 12px !important; line-height: 1.25 !important;
+}
+body.hermes-mirror.gonitro-mirror .gonitro-brand-page .about-lead,
+body.hermes-mirror.gonitro-mirror.page-kontak .kontak-hero p {
+  font-size: 16px !important; color: #475569 !important;
+  max-width: 680px !important; margin: 0 auto !important; line-height: 1.6 !important;
+}
+/* Tentang Gonitro: 3 kolom sejajar di bawah hero */
+body.hermes-mirror.gonitro-mirror .gonitro-brand-page .about-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 24px !important;
+  align-items: stretch !important;
+  width: 100% !important; max-width: 100% !important;
+}
+/* Kontak Gonitro: form kiri + info kanan (bukan 3 kolom) */
+body.hermes-mirror.gonitro-mirror.page-kontak main.hermes-kontak-page {
+  display: block !important; width: 100% !important;
+  position: relative !important; z-index: 1 !important;
+  clear: both !important; overflow: visible !important;
+}
+body.hermes-mirror.gonitro-mirror.page-kontak .kontak-grid {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.85fr) !important;
+  gap: 28px !important;
+  align-items: start !important;
+  width: 100% !important;
+}
+body.hermes-mirror.gonitro-mirror.page-kontak .kontak-form-col,
+body.hermes-mirror.gonitro-mirror.page-kontak .kontak-info-col {
+  min-width: 0 !important; width: auto !important;
+  position: static !important; float: none !important;
+}
+body.hermes-mirror.gonitro-mirror.page-kontak .kontak-info-col {
+  display: flex !important; flex-direction: column !important;
+  gap: 16px !important;
+}
+body.hermes-mirror.gonitro-mirror .gonitro-brand-page .about-card,
+body.hermes-mirror.gonitro-mirror.page-kontak .kontak-card {
+  display: flex !important; flex-direction: column !important;
+  height: auto !important; min-height: 0 !important;
+  background: #fff !important; border: 1px solid #e2e8f0 !important;
+  border-radius: 14px !important; padding: 24px !important;
+  box-shadow: 0 4px 20px rgba(15,23,42,0.06) !important;
+  position: static !important; float: none !important;
+  overflow: visible !important; width: 100% !important;
+  box-sizing: border-box !important;
+}
+@media (max-width: 991px) {
+  body.hermes-mirror.gonitro-mirror .gonitro-brand-page .about-grid {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+  body.hermes-mirror.gonitro-mirror.page-kontak .kontak-grid {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+}
+body.hermes-mirror.gonitro-mirror .gonitro-brand-page .about-card h3,
+body.hermes-mirror.gonitro-mirror.page-kontak .kontak-card h3 {
+  font-size: 15px !important; font-weight: 700 !important;
+  color: #0f172a !important; margin: 0 0 10px !important;
+  text-transform: uppercase !important; letter-spacing: 0.03em !important;
+}
+body.hermes-mirror.gonitro-mirror .gonitro-brand-page .about-card p,
+body.hermes-mirror.gonitro-mirror.page-kontak .kontak-card p,
+body.hermes-mirror.gonitro-mirror.page-kontak .kontak-card li {
+  font-size: 14px !important; color: #475569 !important; line-height: 1.55 !important;
+}
+body.hermes-mirror.gonitro-mirror .gonitro-brand-page .about-checklist {
+  margin: 0 0 14px !important; padding: 0 0 0 18px !important; list-style: none !important;
+}
+body.hermes-mirror.gonitro-mirror .gonitro-brand-page .about-checklist li {
+  position: relative !important; margin: 0 0 8px !important;
+  font-size: 14px !important; color: #475569 !important;
+}
+body.hermes-mirror.gonitro-mirror .gonitro-brand-page .about-checklist li::before {
+  content: "✓" !important; color: #e60028 !important; font-weight: 700 !important;
+  position: absolute !important; left: -18px !important;
+}
+body.hermes-mirror.gonitro-mirror .gonitro-brand-page .about-contact-lines {
+  list-style: none !important; padding: 0 !important; margin: 0 !important;
+}
+body.hermes-mirror.gonitro-mirror .gonitro-brand-page .about-contact-lines li {
+  margin: 0 0 8px !important; font-size: 14px !important;
+  position: static !important; display: block !important;
+  line-height: 1.55 !important; word-break: break-word !important;
+  white-space: normal !important; overflow: visible !important;
+}
+body.hermes-mirror.gonitro-mirror.page-kontak .kontak-card ul {
+  list-style: none !important; padding: 0 !important; margin: 0 !important;
+}
+body.hermes-mirror.gonitro-mirror.page-kontak .kontak-card li {
+  position: static !important; display: block !important;
+  float: none !important; transform: none !important;
+  line-height: 1.55 !important; word-break: break-word !important;
+  white-space: normal !important; overflow: visible !important;
+  margin: 0 0 10px !important; padding: 0 !important;
+}
+body.hermes-mirror.gonitro-mirror.page-kontak .kontak-card li:last-child {
+  margin-bottom: 0 !important;
+}
+body.hermes-mirror.gonitro-mirror .gonitro-brand-page .about-grid .about-card {
+  height: 100% !important; min-height: 100% !important;
+}
+body.hermes-mirror.gonitro-mirror .gonitro-brand-page .about-card a {
+  color: #e60028 !important; font-weight: 600 !important; text-decoration: none !important;
+}
+body.hermes-mirror.gonitro-mirror.page-kontak .hermes-wa-form {
+  background: #fff !important; border: 1px solid #e2e8f0 !important;
+  border-radius: 14px !important; padding: 28px !important;
+  box-shadow: 0 4px 20px rgba(15,23,42,0.06) !important;
+  width: 100% !important; box-sizing: border-box !important;
+}
+body.hermes-mirror.gonitro-mirror.page-kontak .contact-actions .btn,
+body.hermes-mirror.gonitro-mirror.page-kontak .hermes-wa-form button.btn {
+  background: #e60028 !important;
+  box-shadow: 0 4px 14px rgba(230,0,40,0.3) !important;
+}
+body.hermes-mirror.gonitro-mirror.page-kontak .contact-actions .btn:hover,
+body.hermes-mirror.gonitro-mirror.page-kontak .hermes-wa-form button.btn:hover {
+  box-shadow: 0 6px 18px rgba(230,0,40,0.38) !important;
+}
+body.hermes-mirror.gonitro-mirror.page-kontak .kontak-card a {
+  color: #e60028 !important; font-weight: 600 !important;
+}
+body.hermes-mirror.gonitro-mirror .price-card__card-option-buttons {
+  display: flex !important; flex-wrap: wrap !important; gap: 8px !important;
+}
+body.hermes-mirror.gonitro-mirror .price-card__card-option-buttons .button:only-child {
+  width: 100% !important; justify-content: center !important;
+}
+#usercentrics-root, #uc-center-root, #onetrust-consent-sdk, #onetrust-banner-sdk,
+#CybotCookiebotDialog, [id^="usercentrics"], [class*="usercentrics"],
+aside[data-testid="uc-app-container"] {
+  display: none !important; visibility: hidden !important; pointer-events: none !important;
+}
+body.hermes-mirror .footer_2024,
+body.hermes-mirror .footer_2022,
+body.hermes-mirror .footer_2020,
+body.hermes-mirror [class*="footer_pop_"],
+body.hermes-mirror .footer_2024 *,
+body.hermes-mirror [class*="copyright"] {
+  display: none !important;
+  height: 0 !important; overflow: hidden !important;
+  margin: 0 !important; padding: 0 !important;
+  visibility: hidden !important;
+}
+@media (max-width: 768px) {
+  body.hermes-mirror .wrap_1200,
+  body.hermes-mirror .wrap,
+  body.hermes-mirror .wrap_1000 {
+    width: 100% !important; max-width: 100% !important;
+    padding-left: 12px !important; padding-right: 12px !important;
+    box-sizing: border-box !important;
+  }
+  body.hermes-mirror .header_2024,
+  body.hermes-mirror .nav_2024 { max-width: 100vw !important; overflow-x: hidden !important; }
+}
+@media (max-width: 480px) {
+  footer.hermes-reseller-footer .hrf-nav a { font-size: 12px !important; }
+}
+/* EaseUS: perbaiki tampilan tanpa JS lazyload / lottie */
+body.hermes-mirror.easeus-mirror .lazyload,
+body.hermes-mirror.easeus-mirror .lazyloaded { opacity: 1 !important; visibility: visible !important; }
+body.hermes-mirror.easeus-mirror .part_banner .banner_ul li.drw {
+  background: linear-gradient(180deg, #eef3ff 0%, #f8faff 100%) !important;
+  min-height: 420px !important;
+}
+body.hermes-mirror.easeus-mirror .part_banner .banner_ul li {
+  opacity: 1 !important; visibility: visible !important; display: block !important;
+}
+body.hermes-mirror.easeus-mirror .part_explore {
+  background-color: #141518 !important;
+  background-size: cover !important;
+  color: #fff !important;
+}
+body.hermes-mirror.easeus-mirror .part_explore .part_module_title,
+body.hermes-mirror.easeus-mirror .part_explore .part_module_subtitle,
+body.hermes-mirror.easeus-mirror .part_explore .part_module_desc { color: #fff !important; }
+/* Partition Manager — sembunyikan harga bundle One-Year / Lifetime */
+body.hermes-mirror.easeus-mirror .epm_index4_20220825 .b_buy .li > span,
+body.hermes-mirror.easeus-mirror .epm_index4_20220825 .b_buy .li span del {
+  display: none !important;
+}
+body.hermes-mirror.easeus-mirror .explore_box .col_box {
+  min-height: 180px; background: rgba(255,255,255,0.06); border-radius: 12px;
+}
+body.hermes-mirror.easeus-mirror img[data-src] { min-height: 24px; }
+body.hermes-mirror.easeus-mirror .header_2024,
+body.hermes-mirror.easeus-mirror .nav_2024 { position: relative !important; z-index: 100 !important; }
+body.hermes-mirror.easeus-mirror .wrap_1440,
+body.hermes-mirror.easeus-mirror .wrapper { visibility: visible !important; opacity: 1 !important; }
+/* EaseUS product banner — badge versi tidak menimpa judul */
+body.hermes-mirror.easeus-mirror .banner_box_241118 .h1_title,
+body.hermes-mirror.easeus-mirror .banner_box .h1_title {
+  display: flex !important; flex-direction: column !important;
+  align-items: flex-start !important; gap: 10px !important;
+  position: relative !important; overflow: visible !important;
+}
+body.hermes-mirror.easeus-mirror .banner_box_241118 .released,
+body.hermes-mirror.easeus-mirror .banner_box .released,
+body.hermes-mirror.easeus-mirror .part_banner .released {
+  position: static !important; left: auto !important; top: auto !important;
+  margin: 0 !important; font-size: 14px !important; line-height: 1.3 !important;
+  white-space: normal !important; flex-wrap: wrap !important;
+}
+body.hermes-mirror.easeus-mirror .banner_box_241118 .released b,
+body.hermes-mirror.easeus-mirror .banner_box .released b {
+  font-size: 11px !important; padding: 3px 8px !important;
+}
+body.hermes-mirror.easeus-mirror .banner_box_241118 .left_box h1,
+body.hermes-mirror.easeus-mirror .banner_box .left_box h1,
+body.hermes-mirror.easeus-mirror .banner_box h1 {
+  font-size: clamp(22px, 4vw, 36px) !important;
+  line-height: 1.25 !important; margin: 0 !important;
+  max-width: 100% !important; word-break: normal !important;
+}
+body.hermes-mirror.easeus-mirror .banner_box_241118 .left_box,
+body.hermes-mirror.easeus-mirror .banner_box .left_box {
+  max-width: 100% !important; overflow: visible !important;
+}
+body.hermes-mirror.easeus-mirror .banner_box_241118 .wrap_1440,
+body.hermes-mirror.easeus-mirror .banner_box .wrap_1440 {
+  overflow: visible !important;
+}
+@media (max-width: 1000px) {
+  body.hermes-mirror.easeus-mirror .banner_box_241118 .left_box h1,
+  body.hermes-mirror.easeus-mirror .banner_box h1 {
+    font-size: 22px !important; text-align: center !important;
+  }
+  body.hermes-mirror.easeus-mirror .banner_box_241118 .h1_title,
+  body.hermes-mirror.easeus-mirror .banner_box .h1_title {
+    align-items: center !important;
+  }
+}
+/* Halaman tentang reseller EaseUS — layout terpusat & proporsional */
+body.hermes-mirror.easeus-mirror .about-page-wrap {
+  background: #f1f5f9 !important;
+  padding: 24px 16px 40px !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+body.hermes-mirror .page-about.hermes-brand-about.easeus-about {
+  display: block !important;
+  grid-template-columns: none !important;
+  max-width: 1080px !important;
+  width: 100% !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+  line-height: 1.65 !important;
+  color: #1e293b !important;
+  background: transparent !important;
+  float: none !important;
+  clear: both !important;
+  overflow: visible !important;
+}
+body.hermes-mirror .hermes-brand-about.easeus-about .about-hero {
+  text-align: center !important;
+  max-width: 760px !important;
+  margin: 0 auto 32px !important;
+  padding: 36px 28px !important;
+  background: linear-gradient(135deg, #eff6ff 0%, #ffffff 100%) !important;
+  border: 1px solid #dbeafe !important;
+  border-radius: 16px !important;
+  box-shadow: 0 4px 24px rgba(37, 99, 235, 0.06) !important;
+}
+body.hermes-mirror .hermes-brand-about.easeus-about .about-badge {
+  display: inline-block !important;
+  font-size: 12px !important; font-weight: 600 !important;
+  color: #2563eb !important; background: #dbeafe !important;
+  padding: 4px 12px !important; border-radius: 999px !important;
+  margin-bottom: 14px !important; letter-spacing: 0.02em !important;
+}
+body.hermes-mirror .hermes-brand-about.easeus-about h1 {
+  font-size: clamp(24px, 4vw, 32px) !important;
+  margin: 0 0 14px !important; color: #0f172a !important;
+  line-height: 1.25 !important; font-weight: 700 !important;
+}
+body.hermes-mirror .hermes-brand-about.easeus-about .about-lead {
+  font-size: 16px !important; color: #475569 !important;
+  margin: 0 !important; line-height: 1.7 !important;
+}
+body.hermes-mirror .hermes-brand-about.easeus-about .about-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 20px !important;
+  width: 100% !important;
+  margin: 0 !important;
+}
+body.hermes-mirror .hermes-brand-about.easeus-about .about-card {
+  display: flex !important; flex-direction: column !important;
+  background: #fff !important; border: 1px solid #e2e8f0 !important;
+  border-radius: 12px !important; padding: 22px !important;
+  font-size: 14px !important; color: #475569 !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04) !important;
+  min-height: 0 !important; height: auto !important;
+  overflow: visible !important;
+}
+body.hermes-mirror .hermes-brand-about.easeus-about .about-card h3 {
+  font-size: 17px !important; margin: 0 0 12px !important;
+  color: #0f172a !important; font-weight: 600 !important;
+  padding-bottom: 10px !important;
+  border-bottom: 2px solid #eff6ff !important;
+}
+body.hermes-mirror .hermes-brand-about.easeus-about .about-card p {
+  margin: 0 0 10px !important; line-height: 1.65 !important;
+  overflow: visible !important; word-break: break-word !important;
+}
+body.hermes-mirror .hermes-brand-about.easeus-about .about-card a {
+  color: #2563eb !important; font-weight: 500 !important;
+  text-decoration: none !important;
+}
+body.hermes-mirror .hermes-brand-about.easeus-about .about-card a:hover {
+  text-decoration: underline !important;
+}
+body.hermes-mirror .hermes-brand-about.easeus-about .about-contact-lines {
+  margin: 0 !important; padding: 0 !important; list-style: none !important;
+}
+body.hermes-mirror .hermes-brand-about.easeus-about .about-contact-lines li {
+  margin: 0 0 10px !important; font-size: 13px !important;
+  line-height: 1.55 !important; word-break: break-word !important;
+}
+body.hermes-mirror .hermes-brand-about.easeus-about .about-checklist {
+  margin: 0 0 14px !important; padding: 0 0 0 18px !important;
+  list-style: none !important;
+}
+body.hermes-mirror .hermes-brand-about.easeus-about .about-checklist li {
+  position: relative !important; margin: 0 0 8px !important;
+  font-size: 14px !important; line-height: 1.5 !important; color: #475569 !important;
+}
+body.hermes-mirror .hermes-brand-about.easeus-about .about-checklist li::before {
+  content: "✓" !important; color: #2563eb !important; font-weight: 700 !important;
+  position: absolute !important; left: -18px !important;
+}
+@media (max-width: 960px) {
+  body.hermes-mirror .hermes-brand-about.easeus-about .about-grid {
+    grid-template-columns: 1fr !important;
+  }
+  body.hermes-mirror .hermes-brand-about.easeus-about .about-hero {
+    padding: 28px 20px !important;
+  }
+}
+/* EaseUS — nav atas sederhana tanpa dropdown mega-menu */
+body.hermes-mirror.easeus-mirror .header_2024.hermes-simple-header {
+  background: #141518 !important;
+  box-shadow: 0 1px 0 rgba(255,255,255,0.06) !important;
+  position: relative !important;
+  z-index: 200 !important;
+}
+body.hermes-mirror.easeus-mirror .header_2024.hermes-simple-header .wrap {
+  display: flex !important; align-items: center !important;
+  justify-content: space-between !important; flex-wrap: nowrap !important;
+  max-width: 1200px !important; margin: 0 auto !important;
+  padding: 0 16px !important; min-height: 56px !important;
+}
+body.hermes-mirror.easeus-mirror .header_2024.hermes-simple-header .logo_out {
+  flex: 0 0 auto !important; display: flex !important; align-items: center !important;
+}
+/* Logo putih selalu terlihat di header gelap (bukan hanya saat hover) */
+body.hermes-mirror.easeus-mirror .header_2024.hermes-simple-header .logo_out .logo,
+body.hermes-mirror.easeus-mirror .header_2024.hermes-simple-header:hover .logo_out .logo {
+  background-image: url("assets/vendor/images_2019_index_header_2022_logo_white.svg") !important;
+  background-size: contain !important;
+  background-repeat: no-repeat !important;
+  background-position: left center !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  filter: none !important;
+  width: 166px !important;
+  min-width: 140px !important;
+  height: 32px !important;
+  display: block !important;
+}
+body.hermes-mirror.easeus-mirror .header_2024.hermes-simple-header .logo_out .logo img {
+  display: block !important; height: 32px !important; width: auto !important; max-width: 166px !important;
+}
+body.hermes-mirror.easeus-mirror .header_2024.hermes-simple-header .nav_box {
+  flex: 1 1 auto !important; display: flex !important;
+  align-items: center !important; justify-content: flex-end !important;
+  position: static !important; width: auto !important; height: auto !important;
+  background: transparent !important; box-shadow: none !important;
+  overflow: visible !important;
+}
+body.hermes-mirror.easeus-mirror .header_2024.hermes-simple-header .pro_content,
+body.hermes-mirror.easeus-mirror .header_2024.hermes-simple-header .search_box,
+body.hermes-mirror.easeus-mirror .header_2024.hermes-simple-header .header_win_11 {
+  display: none !important;
+}
+body.hermes-mirror.easeus-mirror .header_2024.hermes-simple-header .hermes-topnav {
+  display: flex !important; align-items: center !important;
+  justify-content: flex-end !important; gap: 8px !important; width: 100% !important;
+}
+body.hermes-mirror.easeus-mirror .header_2024.hermes-simple-header .hermes-topnav-list {
+  display: flex !important; flex-wrap: wrap !important; align-items: center !important;
+  justify-content: flex-end !important; gap: 2px 14px !important;
+  list-style: none !important; margin: 0 !important; padding: 0 !important;
+}
+body.hermes-mirror.easeus-mirror .header_2024.hermes-simple-header .hermes-topnav-link {
+  font-size: 13px !important; font-weight: 500 !important;
+  color: #e2e8f0 !important; text-decoration: none !important;
+  padding: 8px 2px !important; white-space: nowrap !important;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif !important;
+}
+body.hermes-mirror.easeus-mirror .header_2024.hermes-simple-header .hermes-topnav-link:hover,
+body.hermes-mirror.easeus-mirror .header_2024.hermes-simple-header .hermes-topnav-link.is-active {
+  color: #60a5fa !important;
+}
+body.hermes-mirror.easeus-mirror .header_2024.hermes-simple-header .close_box {
+  display: none !important; cursor: pointer !important;
+  margin-left: 12px !important; flex: 0 0 auto !important;
+}
+body.hermes-mirror.easeus-mirror .header_2024.hermes-simple-header .close_box .close div {
+  background-color: #fff !important;
+}
+body.hermes-mirror.easeus-mirror .pro_fixed_2022 .click_show,
+body.hermes-mirror.easeus-mirror .pro_fixed_2022 .hidden_infor {
+  display: none !important;
+}
+/* Mobile menu — overlay fixed, tersembunyi sampai dibuka */
+#hermes-mobile-nav {
+  display: none !important; visibility: hidden !important;
+  pointer-events: none !important; opacity: 0 !important;
+}
+#hermes-mobile-nav.is-open {
+  display: block !important; visibility: visible !important;
+  pointer-events: auto !important; opacity: 1 !important;
+  position: fixed !important; inset: 0 !important; z-index: 10001 !important;
+}
+#hermes-mobile-nav .hermes-mobile-nav-backdrop {
+  position: absolute !important; inset: 0 !important;
+  background: rgba(15, 23, 42, 0.55) !important;
+}
+#hermes-mobile-nav .hermes-mobile-nav-panel {
+  position: absolute !important; top: 0 !important; left: 0 !important; right: 0 !important;
+  background: #fff !important; padding: 64px 0 12px !important;
+  max-height: min(70vh, 420px) !important; overflow-y: auto !important;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15) !important;
+  transform: translateY(0) !important;
+}
+#hermes-mobile-nav .hermes-mobile-nav-panel ul {
+  list-style: none !important; margin: 0 !important; padding: 0 !important;
+}
+#hermes-mobile-nav .hermes-mobile-nav-panel a {
+  display: block !important; padding: 12px 20px !important;
+  font-size: 15px !important; font-weight: 500 !important;
+  color: #1e293b !important; text-decoration: none !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif !important;
+}
+#hermes-mobile-nav .hermes-mobile-nav-panel a.is-active {
+  color: #2563eb !important; background: #f0f7ff !important;
+}
+@media (max-width: 1250px) {
+  body.hermes-mirror.easeus-mirror .header_2024.hermes-simple-header {
+    position: sticky !important; top: 0 !important;
+    height: auto !important; overflow: visible !important;
+  }
+  body.hermes-mirror.easeus-mirror .header_2024.hermes-simple-header.current {
+    position: sticky !important; width: 100% !important;
+    height: auto !important; overflow: visible !important;
+  }
+  body.hermes-mirror.easeus-mirror .header_2024.hermes-simple-header .wrap {
+    display: block !important; padding: 0 !important;
+  }
+  body.hermes-mirror.easeus-mirror .header_2024.hermes-simple-header .logo_out {
+    display: flex !important; justify-content: space-between !important;
+    align-items: center !important; background: #141518 !important;
+    padding: 0 12px 0 3% !important; min-height: 56px !important;
+  }
+  body.hermes-mirror.easeus-mirror .header_2024.hermes-simple-header .nav_box,
+  body.hermes-mirror.easeus-mirror .header_2024.hermes-simple-header .hermes-topnav {
+    display: none !important; visibility: hidden !important;
+    height: 0 !important; overflow: hidden !important;
+  }
+  body.hermes-mirror.easeus-mirror .header_2024.hermes-simple-header .close_box {
+    display: flex !important;
+  }
+}
+@media (min-width: 1251px) {
+  body.hermes-mirror.easeus-mirror .header_2024.hermes-simple-header .close_box {
+    display: none !important;
+  }
+  body.hermes-mirror.easeus-mirror .header_2024.hermes-simple-header .nav_box {
+    display: flex !important;
+  }
+}
+.hermes-contact-frame,
+.hermes-contact-frame .frame {
+  float: none !important; width: 100% !important; max-width: 100% !important;
+  margin: 0 !important; padding: 0 !important; overflow: visible !important;
+}
+.hermes-contact-shell.block-center.block-content {
+  float: none !important; width: 100% !important; max-width: 1100px !important;
+  margin: 0 auto !important; padding: 40px 24px 60px !important;
+  box-sizing: border-box !important; overflow: visible !important;
+}
+.hermes-brand-contact {
+  width: 100%; max-width: 640px; margin: 0 auto; padding: 0;
+  box-sizing: border-box;
+}
+.hermes-brand-contact > p {
+  line-height: 1.6; margin-bottom: 24px;
+}
+.hermes-wa-form { float: none !important; width: 100% !important; margin: 0 !important; }
+.hermes-wa-form .hermes-field { margin: 0 0 16px 0; padding: 0; }
+.hermes-wa-form input,
+.hermes-wa-form select,
+.hermes-wa-form textarea {
+  width: 100% !important; max-width: 100% !important; box-sizing: border-box !important;
+  display: block !important; margin: 0 !important; float: none !important;
+  padding: 10px 14px !important; min-height: 42px; height: auto !important;
+  border: 1px solid #d0d0d0 !important; border-radius: 6px !important;
+  background: #f6f6f6 !important; font-size: 15px !important;
+}
+.hermes-wa-form textarea { min-height: 120px; resize: vertical; }
+.hermes-brand-contact .contact-actions {
+  margin-top: 8px; clear: both;
+}
+.hermes-brand-contact .contact-email-box {
+  margin-top: 32px; padding: 24px; background: #f4f6f8; border-radius: 8px;
+  width: 100%; box-sizing: border-box;
+}
+.hermes-brand-about {
+  max-width: 1100px; margin: 0 auto; padding: 32px 24px 48px;
+  line-height: 1.7;
+}
+/* Agisoft .page-about pakai float sidebar — override agar tidak overlap */
+.page-about.hermes-brand-about:not(.easeus-about):not(.gonitro-brand-page),
+.hermes-brand-about.page-about:not(.easeus-about):not(.gonitro-brand-page) {
+  margin-top: 0 !important;
+  padding-right: 0 !important;
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 320px) !important;
+  gap: 32px 40px !important;
+  align-items: start !important;
+  clear: both !important;
+  overflow: visible !important;
+}
+.hermes-brand-about .content {
+  float: none !important;
+  width: auto !important;
+  min-width: 0 !important;
+}
+.hermes-brand-about aside {
+  float: none !important;
+  width: auto !important;
+  margin: 0 !important;
+  padding: 20px !important;
+  background: rgba(0,0,0,0.04) !important;
+  border-radius: 8px !important;
+  box-sizing: border-box !important;
+  word-break: break-word !important;
+}
+.hermes-brand-about .content h3 { margin-top: 0; }
+.hermes-brand-about .btn { display: inline-block; margin: 8px 8px 0 0; }
+.hermes-brand-about .items-about {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 16px !important;
+}
+.hermes-brand-about .items-about .item {
+  flex: 1 1 280px !important;
+  width: auto !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+}
+@media (max-width: 900px) {
+  .page-about.hermes-brand-about:not(.easeus-about):not(.gonitro-brand-page),
+  .hermes-brand-about.page-about:not(.easeus-about):not(.gonitro-brand-page) {
+    grid-template-columns: 1fr !important;
+  }
+  .hermes-brand-about aside { order: -1; }
+}
+.hermes-brand-contact .contact-email-box .btn {
+  display: inline-block; max-width: 100%; white-space: normal;
+  word-break: break-word;
+}
+/* Index: kartu advantages — pastikan ikon & area hijau tampil */
+.block-advantages a .descr .ico {
+  min-width: 74px; min-height: 72px;
+}
+.block-advantages a .descr {
+  min-height: 90px;
+}
+@media (max-width: 900px) {
+  .hermes-contact-shell.block-center.block-content {
+    padding-left: 16px !important; padding-right: 16px !important;
+  }
+}
+/* Halaman kontak reseller EaseUS */
+body.hermes-mirror.easeus-mirror.page-kontak {
+  background: #f1f5f9 !important;
+}
+body.hermes-mirror.easeus-mirror.page-kontak .header_2024 {
+  margin-bottom: 0 !important;
+}
+.hermes-kontak-page {
+  max-width: 960px; margin: 0 auto; padding: 48px 24px 64px;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  box-sizing: border-box;
+}
+.hermes-kontak-page .kontak-hero {
+  text-align: center; margin-bottom: 40px;
+}
+.hermes-kontak-page .kontak-badge {
+  display: inline-block; font-size: 12px; font-weight: 600; letter-spacing: 0.04em;
+  text-transform: uppercase; color: #2563eb; background: #eff6ff;
+  border: 1px solid #bfdbfe; border-radius: 999px; padding: 6px 14px; margin-bottom: 16px;
+}
+.hermes-kontak-page .kontak-hero h1 {
+  font-size: 34px; font-weight: 700; color: #0f172a; margin: 0 0 14px; line-height: 1.2;
+}
+.hermes-kontak-page .kontak-hero p {
+  font-size: 16px; color: #64748b; max-width: 520px; margin: 0 auto; line-height: 1.65;
+}
+.hermes-kontak-page .kontak-grid {
+  display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
+  gap: 28px; align-items: start;
+}
+.hermes-kontak-page .kontak-form-col { min-width: 0; }
+.hermes-kontak-page .kontak-info-col { display: flex; flex-direction: column; gap: 14px; }
+.hermes-kontak-page .kontak-card {
+  background: #fff; border: 1px solid #e2e8f0; border-radius: 14px;
+  padding: 20px 22px; margin: 0;
+  box-shadow: 0 1px 3px rgba(15,23,42,0.04);
+}
+.hermes-kontak-page .kontak-card h3 {
+  font-size: 14px; font-weight: 700; color: #0f172a; margin: 0 0 10px;
+  text-transform: uppercase; letter-spacing: 0.03em;
+}
+.hermes-kontak-page .kontak-card p,
+.hermes-kontak-page .kontak-card li {
+  font-size: 14px; color: #475569; line-height: 1.55; margin: 0 0 8px;
+}
+.hermes-kontak-page .kontak-card ul { list-style: none; padding: 0; margin: 0; }
+.hermes-kontak-page .kontak-card li:last-child { margin-bottom: 0; }
+.hermes-kontak-page .kontak-card a { color: #2563eb; text-decoration: none; font-weight: 500; }
+.hermes-kontak-page .kontak-card a:hover { text-decoration: underline; }
+.hermes-kontak-page .hermes-wa-form {
+  background: #fff; border: 1px solid #e2e8f0; border-radius: 16px;
+  padding: 28px 28px 24px; box-shadow: 0 8px 32px rgba(15,23,42,0.08);
+}
+.hermes-kontak-page .hermes-wa-form h2 {
+  font-size: 20px; font-weight: 700; margin: 0 0 6px; color: #0f172a;
+}
+.hermes-kontak-page .hermes-wa-form .form-lead {
+  font-size: 14px; color: #64748b; margin: 0 0 22px; line-height: 1.5;
+}
+.hermes-kontak-page .hermes-wa-form .hermes-field { margin-bottom: 16px; }
+.hermes-kontak-page .hermes-wa-form label {
+  display: block; font-size: 13px; font-weight: 600; color: #334155; margin-bottom: 6px;
+}
+.hermes-kontak-page .hermes-wa-form input,
+.hermes-kontak-page .hermes-wa-form select,
+.hermes-kontak-page .hermes-wa-form textarea {
+  width: 100%; box-sizing: border-box; display: block;
+  padding: 11px 14px; min-height: 44px;
+  border: 1px solid #cbd5e1; border-radius: 10px;
+  background: #f8fafc; font-size: 15px; font-family: inherit;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.hermes-kontak-page .hermes-wa-form input:focus,
+.hermes-kontak-page .hermes-wa-form select:focus,
+.hermes-kontak-page .hermes-wa-form textarea:focus {
+  outline: none; border-color: #2563eb; background: #fff;
+  box-shadow: 0 0 0 3px rgba(37,99,235,0.12);
+}
+.hermes-kontak-page .hermes-wa-form textarea { min-height: 120px; resize: vertical; }
+.hermes-kontak-page .contact-actions { margin-top: 8px; }
+.hermes-kontak-page .contact-actions .btn,
+.hermes-kontak-page .hermes-wa-form button.btn {
+  width: 100%; background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: #fff; border: none; border-radius: 10px;
+  padding: 13px 20px; font-size: 15px; font-weight: 600;
+  cursor: pointer; font-family: inherit;
+  box-shadow: 0 4px 14px rgba(37,99,235,0.35);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.hermes-kontak-page .contact-actions .btn:hover,
+.hermes-kontak-page .hermes-wa-form button.btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(37,99,235,0.4);
+}
+@media (max-width: 768px) {
+  .hermes-kontak-page { padding: 32px 16px 48px; }
+  .hermes-kontak-page .kontak-grid { grid-template-columns: 1fr; gap: 24px; }
+  .hermes-kontak-page .kontak-hero h1 { font-size: 26px; }
+  .hermes-kontak-page .kontak-info-col { order: 2; }
+}
+</style><link rel="stylesheet" href="assets/mobile-fix.css"/></head><body class="hermes-mirror gonitro-mirror"><div class="hermes-reseller-bar">🏷️ Reseller Resmi · PT Digital Asia Utama · <a href="https://wa.me/628128081088" target="_blank">WhatsApp</a></div><div class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" data-hs-cos-general-type="widget" data-hs-cos-type="module" id="hs_cos_wrapper_page_overrides" style=""></div>
+<div class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" data-hs-cos-general-type="widget" data-hs-cos-type="module" id="hs_cos_wrapper_module_17608850467264" style=""></div>
+<div class="body-wrapper hs-content-id-183929080417 hs-site-page page">
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe height="0" src="https://measure.gonitro.com/ns.html?id=GTM-WVZNLW" style="display:none;visibility:hidden" width="0"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<div data-global-resource-path="Nitro_2025/templates/partials/header.html"><header class="header hermes-gonitro-header">
+<a class="header__skip" href="#main-content">Skip to content</a>
+<div class="header__container">
+<div class="content-wrapper content-wrapper--wide">
+<div class="header__inner">
+<div class="header__logo">
+<div class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module widget-type-logo" data-hs-cos-general-type="widget" data-hs-cos-type="module" id="hs_cos_wrapper_site_logo" style="">
+<span class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_logo" data-hs-cos-general-type="widget" data-hs-cos-type="logo" id="hs_cos_wrapper_site_logo_hs_logo_widget" style=""><a href="index.html" id="hs-link-site_logo_hs_logo_widget" style="border-width:0px;border:0px;"><img alt="Click to return to Nitro homepage" class="hs-image-widget" height="55" src="assets/vendor/hubfs_Nitro_2025_logo-dark.svg" style="height: auto;width:80px;border-width:0px;border:0px;" title="Click to return to Nitro homepage" width="80"/></a></span>
+</div>
+</div>
+<div class="header__navigation">
+<div class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" data-hs-cos-general-type="widget" data-hs-cos-type="module" id="hs_cos_wrapper_mega_menu" style=""><nav aria-label="Navigasi utama" class="hermes-gonitro-nav"><button aria-expanded="false" aria-label="Buka menu navigasi" class="hermes-gonitro-nav-toggle" type="button"><span></span><span></span><span></span></button><ul class="hermes-gonitro-nav-list"><li><a class="hermes-gonitro-nav-link" href="index.html">Beranda</a></li><li><a class="hermes-gonitro-nav-link" href="pro.html">Nitro PDF</a></li><li><a class="hermes-gonitro-nav-link" href="sign.html">Nitro Sign</a></li><li><a class="hermes-gonitro-nav-link" href="produk.html">Paket &amp; Harga</a></li><li><a class="hermes-gonitro-nav-link is-active" href="tentang.html">Tentang</a></li><li><a class="hermes-gonitro-nav-link" href="kontak.html">Kontak</a></li></ul><div class="hermes-gonitro-nav-ctas"><a class="button button--tertiary button--small" href="kontak.html">Kontak Sales</a><a class="button button--tertiary button--small" href="https://wa.me/628128081088" rel="noopener" target="_blank">Coba Gratis</a><a class="button button--primary button--small" href="produk.html">Beli Sekarang</a></div></nav></div>
+</div>
+<div class="header__language">
+<div class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module widget-type-language_switcher" data-hs-cos-general-type="widget" data-hs-cos-type="module" id="hs_cos_wrapper_language" style="">
+<nav aria-label="Select your language" class="hs-language-switcher">
+<div class="hs-language-switcher__inner-wrapper">
+<button aria-expanded="false" aria-label="English" class="hs-language-switcher__button button button--text-secondary">
+<span aria-hidden="true" class="hs-language-switcher__label">
+<img alt="globe icon" class="hs-language-switcher__icon--custom" height="22" src="assets/vendor/hubfs_Nitro_2025_globe.svg" width="22"/>
+<span class="hs-language-switcher__current-language">EN</span>
+</span>
+</button>
+<ul class="hs-language-switcher__menu" role="menu">
+<li class="hs-language-switcher__item" role="menuitem">
+<a data-value="Français" href="tentang.html" hreflang="fr" lang="fr">Français</a>
+</li>
+<li class="hs-language-switcher__item" role="menuitem">
+<a data-value="Español" href="tentang.html" hreflang="es" lang="es">Español</a>
+</li>
+<li class="hs-language-switcher__item" role="menuitem">
+<a data-value="Deutsch" href="tentang.html" hreflang="de" lang="de">Deutsch</a>
+</li>
+<li class="hs-language-switcher__item" role="menuitem">
+<a data-value="Italiano" href="tentang.html" hreflang="it" lang="it">Italiano</a>
+</li>
+<li class="hs-language-switcher__item" role="menuitem">
+<a data-value="Nederlands" href="tentang.html" hreflang="nl" lang="nl">Nederlands</a>
+</li>
+<li class="hs-language-switcher__item" role="menuitem">
+<a data-value="English" href="tentang.html" hreflang="en" lang="en">English</a>
+</li>
+</ul>
+</div>
+</nav>
+</div>
+</div>
+</div>
+</div>
+</div>
+</header></div>
+<main class="about-page-wrap">
+<div class="page-about hermes-brand-about gonitro-brand-page">
+<div class="about-hero">
+<span class="about-badge">reseller Resmi Nitro PDF Pro</span>
+<h1>Tentang PT Digital Asia Utama</h1>
+<p class="about-lead">PT Digital Asia Utama adalah <strong>reseller resmi Nitro PDF Pro</strong> di Indonesia.
+    Kami membantu perorangan, UMKM, dan perusahaan mendapatkan lisensi original,
+    harga kompetitif, serta dukungan purna jual dalam Bahasa Indonesia.</p>
+</div>
+<div class="about-grid">
+<div class="about-card">
+<h3>Layanan Kami</h3>
+<p>Konsultasi pemilihan paket lisensi, penawaran harga volume/korporat,
+      aktivasi cepat, dan pendampingan teknis via WhatsApp serta email.</p>
+<p>Situs <strong>nitropdfpro.com</strong> dioperasikan oleh PT Digital Asia Utama — bukan situs pusat vendor.</p>
+</div>
+<div class="about-card">
+<h3>Mengapa Memilih Kami</h3>
+<ul class="about-checklist">
+<li>Lisensi 100% legal &amp; original</li>
+<li>Dukungan Bahasa Indonesia</li>
+<li>Harga kompetitif untuk individu &amp; perusahaan</li>
+<li>Proses pembelian mudah &amp; cepat</li>
+</ul>
+<p><a href="https://wa.me/628128081088" rel="noopener" target="_blank">
+        Hubungi via WhatsApp</a></p>
+</div>
+<div class="about-card about-contact-card">
+<h3>Kontak reseller</h3>
+<ul class="about-contact-lines">
+<li>📞 +628128081088</li>
+<li>📧 <a href="mailto:info@softwareasli.com">info@softwareasli.com</a></li>
+<li>📍 Tokopedia Tower, Ciputra International, 16th Floor Jl. Lkr. Luar Barat No.101, Rw.Buaya, Kecamatan Cengkareng, Kota Jakarta Barat, Daerah Khusus Ibukota Jakarta 11740</li>
+</ul>
+</div>
+</div>
+</div>
+</main>
+</div>
+<div class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" data-hs-cos-general-type="widget" data-hs-cos-type="module" id="hs_cos_wrapper_module_17425534691211" style=""><form-modal>
+<div aria-hidden="true" class="modal micromodal-slide" id="form-modal" inert="">
+<div class="modal__overlay" data-form-modal-close="" tabindex="-1">
+<div aria-labelledby="" aria-modal="true" class="modal__container modal__container_form" role="dialog">
+<button aria-label="Close modal" class="modal__close modal__close_form" data-form-modal-close="">
+          ×
+        </button>
+<div data-modal-selector="modalA">
+<div class="modal__title_details">
+<h2 class="modal-header-heading">Terima kasih atas minat Anda pada Nitro</h2>
+<div class="modal-header-subtitle"><span style="color: #ffffff;">Diskon volume lisensi kami dimulai pada <strong>20+ licenses.</strong> Berdasarkan volume lisensi yang Anda minta, Anda dapat melanjutkan dan membeli melalui toko online kami. <span style="color: #fcaf9d;"><a href="produk.html" style="color: #fcaf9d;">Kunjungi halaman harga kami</a></span></span></div>
+</div>
+<div class="modal-body-container">
+<h4 class="modal-body-title">Paket yang direkomendasikan melalui toko online kami</h4>
+<div class="modal-cards-grid modal-cards-grid-">
+<div class="modal-card" style="background-color: ">
+<div class="m-card-title"> Nitro PDF Pro</div>
+<div class="m-card-title-detail"> Untuk Windows</div>
+<div class="m-card-subtitle"> <span>Pembelian satu kali yang mudah digunakan untuk mengedit, mengonversi dan menggabungkan file, mengisi dan menandatangani formulir, OCR, dan banyak lagi.</span></div>
+<div class="modal-cta-row">
+<a href="produk.html">
+<div class="modal-cta-button button button--tertiary button--small">
+<span>Beli Sekarang</span>
+</div>
+</a>
+</div>
+</div>
+<div class="modal-card" style="background-color: ">
+<div class="m-card-title"> Nitro PDF</div>
+<div class="m-card-title-detail"> Untuk Windows, Mac, dan iOS</div>
+<div class="m-card-subtitle"> Untuk individu, tim &amp; bisnis yang mencari rangkaian lengkap fitur pengeditan PDF untuk meningkatkan produktivitas dan menyederhanakan alur kerja.</div>
+<div class="modal-cta-row">
+<a href="produk.html">
+<div class="modal-cta-button button button--tertiary button--small">
+<span>Berlangganan Now</span>
+</div>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div data-modal-selector="modalB">
+<div class="modal__title_details">
+<h2 class="modal-header-heading">Terima kasih atas minat Anda pada Nitro</h2>
+<div class="modal-header-subtitle"><span style="color: #ffffff;">Diskon volume lisensi kami dimulai pada <strong>20+ licenses.</strong> Berdasarkan volume lisensi yang Anda minta, Anda dapat melanjutkan dan membeli melalui toko online kami. <span style="color: #fcaf9d;"><a href="produk.html" style="color: #fcaf9d;">Kunjungi halaman harga kami</a></span></span></div>
+</div>
+<div class="modal-body-container">
+<h4 class="modal-body-title">Paket yang direkomendasikan melalui toko online kami</h4>
+<div class="modal-cards-grid modal-cards-grid-">
+<div class="modal-card" style="background-color: ">
+<div class="m-card-title"> Nitro PDF</div>
+<div class="m-card-title-detail"> Untuk Windows, Mac, dan iOS</div>
+<div class="m-card-subtitle"> Untuk individu, tim &amp; bisnis yang mencari rangkaian lengkap fitur pengeditan PDF untuk meningkatkan produktivitas dan menyederhanakan alur kerja.</div>
+<div class="modal-cta-row">
+<a href="produk.html">
+<div class="modal-cta-button button button--tertiary button--small">
+<span>Berlangganan Now</span>
+</div>
+</a>
+</div>
+</div>
+<div class="modal-card" style="background-color: #F2F2F6">
+<div class="m-card-title"> Hubungi Kami</div>
+<div class="m-card-title-detail"> </div>
+<div class="m-card-subtitle"> <span>Hubungi Kami jika Anda masih ingin berbicara langsung dengan ahli Nitro.</span></div>
+<div class="modal-cta-row">
+<div class="modal-cta-button button button--tertiary button--small" data-form-modal-close="">
+<span>Continue</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div data-modal-selector="popUp1">
+<div class="modal__title_details">
+<h2 class="modal-header-heading">Terima kasih atas minat Anda pada Nitro!</h2>
+<div class="modal-header-subtitle"><span style="color: #ffffff;"><span>Bagi yang membutuhkan <strong>fewer than 20 licenses</strong>, toko online kami adalah cara tercepat untuk mengakses alat Nitro PDF tepercaya—dioptimalkan untuk kesederhanaan, keamanan, dan kecepatan.</span><span style="color: #fcaf9d;"><span style="color: #ffffff;"></span></span></span></div>
+</div>
+<div class="modal-body-container">
+<h4 class="modal-body-title">Paket yang direkomendasikan untuk Anda:</h4>
+<div class="modal-cards-grid modal-cards-grid-1">
+<div class="modal-card" style="background-color: #F2F2F6">
+<div class="m-card-title"> Nitro PDF Standar</div>
+<div class="m-card-title-detail"> Untuk Windows, Mac, dan iOS</div>
+<div class="m-card-subtitle"> <span data-contrast="none" lang="EN-GB" xml:lang="EN-GB"><span>Untuk individu, tim kecil, dan bisnis yang mencari rangkaian lengkap alat pengeditan PDF untuk meningkatkan produktivitas dan menyederhanakan alur kerja.</span></span></div>
+<div class="modal-cta-row">
+<div class="modal-timer" data-timer-value="15" data-url-redirect="https://store.gonitro.com/304/purl-nitroweb?x-source=mql-popup-ecomm">                             Anda akan diarahkan ke toko online kami di                           </div>
+<a href="kontak.html">
+<div class="modal-cta-button button button--tertiary button--small">
+<span>Shop Nitro PDF Standar</span>
+<span class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_icon button_icon_custom" data-hs-cos-general-type="widget" data-hs-cos-type="icon" id="hs_cos_wrapper_module_17425534691211_" style=""><svg aria-hidden="true" version="1.0" viewbox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><g id="Arrow Right Long1_layer"><path d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l370.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128z"></path></g></svg></span>
+</div>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</form-modal></div>
+<!-- HubSpot performance collection script -->
+<script defer="" src="assets/vendor/hs_hsstatic_content-cwv-embed_static-1.1293_embed.js"></script>
+<script>
+var hsVars = hsVars || {}; hsVars['language'] = 'en';
+</script>
+<script src="assets/vendor/hs_hsstatic_cos-i18n_static-1.53_bundles_project.js"></script>
+<script src="assets/vendor/hubfs_hub_generated_module_assets_1_212365241454_1781193184738_module_product-focus-tracker.min.js"></script>
+<script src="assets/vendor/hubfs_hub_generated_module_assets_1_187665754115_1745509490432_module_form-modal.min.js"></script>
+<script src="assets/vendor/hubfs_hub_generated_template_assets_1_179931393356_1781794116410_template_main.min.js"></script>
+<script src="assets/vendor/hubfs_hub_generated_module_assets_1_179926092448_1777474459594_module_mega-menu.min.js"></script>
+<script src="assets/vendor/hubfs_hub_generated_module_assets_1_180083839543_1761745091912_module_language-switcher.min.js"></script>
+<script src="assets/vendor/hubfs_hub_generated_template_assets_1_180942881669_1781794119961_template_gsap.min.js"></script>
+<script src="assets/vendor/hubfs_hub_generated_module_assets_1_180940957580_1743361746209_module_logo-carousel.min.js"></script>
+<script src="assets/vendor/hubfs_hub_generated_template_assets_1_182818011740_1781794114506_template_scroll-trigger.min.js"></script>
+<script src="assets/vendor/hubfs_hub_generated_module_assets_1_182818646072_1743361754998_module_stats-1.min.js"></script>
+<!--[if lte IE 8]>
+    <script charset="utf-8" src="https://js.hsforms.net/forms/v2-legacy.js"></script>
+    <![endif]-->
+<script data-hs-allowed="true" src="assets/vendor/_hcms_forms_v2.js"></script>
+<script data-hs-allowed="true">
+        var options = {
+            portalId: '45424130',
+            formId: 'fb207b8e-9d08-4e69-a9d1-0cc9e8070187',
+            formInstanceId: '2399',
+            
+            pageId: '183929080417',
+            
+            region: 'na1',
+            
+            
+            
+            
+            pageName: "About Nitro",
+            
+            
+            
+            inlineMessage: "Thanks for submitting the form.",
+            
+            
+            rawInlineMessage: "Thanks for submitting the form.",
+            
+            
+            hsFormKey: "dd7c456767fc24bd873868dbf49672e9",
+            
+            
+            css: '',
+            target: '#hs_form_target_footer_button_',
+            
+            
+            
+            
+            
+            
+            
+            contentType: "standard-page",
+            
+            
+            
+            formsBaseUrl: '/_hcms/forms/',
+            
+            
+            
+            formData: {
+                cssClass: 'hs-form stacked hs-custom-form'
+            }
+        };
+
+        options.getExtraMetaDataBeforeSubmit = function() {
+            var metadata = {};
+            
+
+            if (hbspt.targetedContentMetadata) {
+                var count = hbspt.targetedContentMetadata.length;
+                var targetedContentData = [];
+                for (var i = 0; i < count; i++) {
+                    var tc = hbspt.targetedContentMetadata[i];
+                     if ( tc.length !== 3) {
+                        continue;
+                     }
+                     targetedContentData.push({
+                        definitionId: tc[0],
+                        criterionId: tc[1],
+                        smartTypeId: tc[2]
+                     });
+                }
+                metadata["targetedContentMetadata"] = JSON.stringify(targetedContentData);
+            }
+
+            return metadata;
+        };
+
+        hbspt.forms.create(options);
+    </script>
+<script src="assets/vendor/hubfs_hub_generated_module_assets_1_179991233052_1747995439763_module_footer-menu.min.js"></script>
+<!-- Start of HubSpot Analytics Code -->
+<script type="text/javascript">
+var _hsq = _hsq || [];
+_hsq.push(["setContentType", "standard-page"]);
+_hsq.push(["setCanonicalUrl", "https:\/\/www.gonitro.com\/about"]);
+_hsq.push(["setPageId", "183929080417"]);
+_hsq.push(["setContentMetadata", {
+    "contentPageId": 183929080417,
+    "legacyPageId": "183929080417",
+    "contentFolderId": null,
+    "contentGroupId": null,
+    "abTestId": null,
+    "languageVariantId": 183929080417,
+    "languageCode": "en",
+    
+    
+}]);
+</script>
+<script type="text/javascript">
+var hbspt = hbspt || {};
+(hbspt.targetedContentMetadata = hbspt.targetedContentMetadata || []).push(...[]);
+
+var _hsq = _hsq || [];
+_hsq.push(["setTargetedContentMetadata", hbspt.targetedContentMetadata]);
+</script>
+<script async="" defer="" id="hs-script-loader" src="assets/vendor/hs_scriptloader_45424130.js" type="text/javascript"></script>
+<!-- End of HubSpot Analytics Code -->
+<script id="hermes-gonitro-nav-js">
+(function(){
+  var nav = document.querySelector('.hermes-gonitro-nav');
+  if (!nav) return;
+  var toggle = nav.querySelector('.hermes-gonitro-nav-toggle');
+  function setOpen(open) {
+    nav.classList.toggle('is-open', open);
+    if (toggle) toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+  if (toggle) {
+    toggle.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      setOpen(!nav.classList.contains('is-open'));
+    });
+  }
+  nav.querySelectorAll('a').forEach(function(a) {
+    a.addEventListener('click', function() { setOpen(false); });
+  });
+  document.addEventListener('click', function(e) {
+    if (nav.classList.contains('is-open') && !nav.contains(e.target)) setOpen(false);
+  });
+})();
+</script><div aria-hidden="true" class="hermes-mobile-nav" hidden="" id="hermes-mobile-nav" style="display:none"><div aria-hidden="true" class="hermes-mobile-nav-backdrop"></div><nav aria-label="Menu navigasi mobile" class="hermes-mobile-nav-panel"><ul><li><a class="hermes-mobile-link" href="index.html">Beranda</a></li><li><a class="hermes-mobile-link" href="pro.html">Nitro PDF</a></li><li><a class="hermes-mobile-link" href="sign.html">Nitro Sign</a></li><li><a class="hermes-mobile-link" href="produk.html">Paket &amp; Harga</a></li><li><a class="hermes-mobile-link is-active" href="tentang.html">Tentang</a></li><li><a class="hermes-mobile-link" href="kontak.html">Kontak</a></li></ul></nav></div><footer class="hermes-reseller-footer">
+<div class="hrf-inner">
+<div class="hrf-top">
+<div class="hrf-brand">
+<span class="hrf-brand-name">PT Digital Asia Utama</span>
+<span class="hrf-tagline">reseller resmi berlisensi · Dukungan Bahasa Indonesia</span>
+</div>
+<nav aria-label="Navigasi footer" class="hrf-nav"><a href="pro.html">Nitro PDF</a><a href="sign.html">Nitro Sign</a><a href="produk.html">Paket &amp; Harga</a><a href="tentang.html">Tentang</a><a href="kontak.html">Kontak</a></nav>
+</div>
+<div class="hrf-meta">
+<div class="hrf-contact">
+<span class="hrf-label">Kontak</span>
+        📞 +628128081088<br/>
+        📧 <a href="mailto:info@softwareasli.com">info@softwareasli.com</a><br/>
+        💬 <a href="https://wa.me/628128081088" rel="noopener" target="_blank">WhatsApp</a>
+</div>
+<div class="hrf-address">
+<span class="hrf-label">Alamat</span>
+        📍 Tokopedia Tower, Ciputra International, 16th Floor Jl. Lkr. Luar Barat No.101, Rw.Buaya, Kecamatan Cengkareng, Kota Jakarta Barat, Daerah Khusus Ibukota Jakarta 11740
+      </div>
+</div>
+<p class="hrf-copy">
+      © PT Digital Asia Utama. Konten produk © vendor asli. Pembelian lisensi melalui reseller ini.
+    </p>
+</div>
+</footer><a aria-label="Chat WhatsApp" class="hermes-wa-fab" href="https://wa.me/628128081088" id="hermes-wa-fab" rel="noopener" target="_blank" title="Chat WhatsApp"><svg aria-hidden="true" viewbox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M16 3C9.373 3 4 8.075 4 14.578c0 2.266.735 4.367 1.978 6.07L4 29l8.59-1.895A12.8 12.8 0 0 0 16 26.156C22.627 26.156 28 21.08 28 14.578 28 8.075 22.627 3 16 3zm0 2.3c5.247 0 9.5 4.05 9.5 9.278 0 5.227-4.253 9.278-9.5 9.278a10.5 10.5 0 0 1-4.89-1.2l-.35-.17-5.09 1.123 1.36-4.95-.23-.36A9.2 9.2 0 0 1 6.5 14.578c0-5.228 4.253-9.278 9.5-9.278zm-3.4 5.2c-.12 0-.35.04-.53.2-.18.17-.7.68-.7 1.66 0 .98.72 1.93.82 2.07.1.14 1.4 2.24 3.48 3.05 1.72.68 2.07.61 2.44.57.37-.04 1.19-.49 1.36-.96.17-.47.17-.87.12-.96-.05-.09-.18-.14-.37-.25-.19-.1-1.19-.59-1.37-.66-.18-.07-.32-.1-.45.1-.14.2-.52.66-.64.8-.12.14-.24.16-.44.05-.2-.1-.84-.31-1.6-.99-.59-.53-.99-1.18-1.1-1.38-.12-.2-.01-.31.08-.41.09-.09.2-.24.3-.36.1-.12.13-.2.2-.33.07-.13.04-.25-.02-.36-.06-.1-.45-1.08-.62-1.48z"></path></svg></a><script id="hermes-wa-contact-form-script">
+(function() {
+  var form = document.getElementById('hermes-wa-contact-form');
+  if (!form) return;
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var name = (form.querySelector('[name="name"]') || {}).value || '';
+    var email = (form.querySelector('[name="email"]') || {}).value || '';
+    var phone = (form.querySelector('[name="phone"]') || {}).value || '';
+    var topic = (form.querySelector('[name="topic"]') || {}).value || '';
+    var msg = (form.querySelector('[name="message"]') || {}).value || '';
+    var text = 'Halo, saya ' + name + '.\n'
+      + 'Email: ' + email + '\n'
+      + 'WhatsApp/Telp: ' + phone + '\n'
+      + 'Topik: ' + topic + '\n'
+      + 'Pesan: ' + msg;
+    window.open('https://wa.me/628128081088?text=' + encodeURIComponent(text), '_blank');
+  });
+})();
+</script></body></html>
